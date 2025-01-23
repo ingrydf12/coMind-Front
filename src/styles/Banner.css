@@ -1,0 +1,51 @@
+#root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.banner {
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 4rem;
+
+}
+
+.banner-text {
+    display: flex;
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    color: #322D3F;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.banner-text h1 {
+    display: flex;
+    font-size: 8rem;
+}
+
+.banner-text p {
+    font-size: 1.5rem;
+    color: #322D3F;
+}
+
+.btnAjuda{
+    padding: 1.5rem 3rem;
+    width: 50%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background-color: #232E9D;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.btnAjuda:hover {
+    color: #fff;
+    background-color: #1c237b;
+    border-color: #1c237b;
+    transform: scale(1.05);
+}
