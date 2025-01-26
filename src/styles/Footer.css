@@ -1,16 +1,23 @@
 footer {
     background-color: #9D48D6;
+    padding: 1.5rem;
 }
 
 .main-footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-inline: 10rem;;
+}
+
+footer img {
+    height: 4rem;
+    width: auto;
 }
 
 hr {
-    max-width: 80%;
+    width: 100%;
+    justify-self: center;
+    margin: 0.5rem;
 }
 
 .sub-footer {
@@ -20,10 +27,9 @@ hr {
 
 /* Logo */
 
-footer img {
+.svg-footer {
     height: 4rem;
     width: auto;
-    padding-top: 4rem;
 }
 
 /* Mapa do Site */
@@ -36,6 +42,7 @@ footer img {
 .site-map a {
     color: #ffff;
     font-size: 1rem;
+    font-weight: 300;
     width: 100%;
     height: 100%;
 }
@@ -47,6 +54,7 @@ footer img {
 /* Redes Sociais */
 
 .social-media {
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
 }

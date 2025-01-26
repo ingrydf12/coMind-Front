@@ -4,10 +4,11 @@ import { SlSocialTwitter } from "react-icons/sl";
 import '../styles/Footer.css';
 
 const Footer = () => {
-    return(
-       <footer>
+    return (
+        <footer>
             <div className="main-footer">
-                <img src="logoCoMindFooter.svg" alt="logo-footer"></img>
+                <img src="logoCoMindFooter.svg" alt="logo"></img>
+
                 <div className="site-map">
                     <h2>Mapa do Site</h2>
                     <ul>
@@ -19,16 +20,15 @@ const Footer = () => {
                     </ul>
                 </div>
                 <div className="social-media">
-                    <h2>Redes Sociais</h2>
                     <a href="#intagram"><BsInstagram size={30} style={{ fill: 'white' }} /></a>
                     <a href="x"><SlSocialTwitter size={30} style={{ fill: 'white' }} /></a>
                 </div>
             </div>
-            <hr /> 
+            <hr />
             <div className="sub-footer">
                 <p>&copy; 2025 Copyright - CoMind</p>
             </div>
-       </footer>
+        </footer>
     );
 }
 
