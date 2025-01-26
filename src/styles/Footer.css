@@ -63,3 +63,8 @@ hr {
     text-align: center;
     padding: 0.5rem; 
 }
+
+.social-media a:hover{
+    transition: transform 0.2s ease;
+    transform: scale(1.1);
+}
