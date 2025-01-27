@@ -69,3 +69,12 @@
     width: 60%;
     color: #322D3F;
 }
+
+@media only screen and (max-width: 600px){
+    .login-container{
+        flex-direction: column;
+    }
+    .form-signin-components input {
+        width: 90%;
+    }
+}
