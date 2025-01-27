@@ -18,7 +18,7 @@
     padding: 1rem;
 }
 
-img:hover {
+.navbar img:hover{
     transition: transform 0.2s ease;
     transform: scale(1.02);
     filter: drop-shadow(0 0 0.75rem #4fd4aa);
@@ -71,3 +71,4 @@ img:hover {
     align-items: center;
     gap: 1rem;
 }
+
