@@ -1,6 +1,7 @@
 import Button from "../../components/Button/Button"
 import React from "react"
 import '../../styles/Register.css';
+
 const Register = () => {
     return (
         <main className="register-container">
@@ -21,4 +22,4 @@ const Register = () => {
         </main>
     )
 }
-export default Register
+export default Register;

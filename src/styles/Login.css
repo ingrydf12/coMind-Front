@@ -24,7 +24,10 @@
     justify-items: center;
     align-content: center;
     color: #fafafa;
+}
 
+.login-auth-container{
+    padding: 0.5rem;
 }
 
 .register-auth {

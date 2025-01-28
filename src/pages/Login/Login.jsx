@@ -6,10 +6,11 @@ const Login = () => {
     return (
         <main className="login-container">
             <div className="login-auth">
-                    <h1 id="accent">Já tem uma conta?</h1>
-                    <h2>Bem-vindo de volta!</h2>
+                <h1 id="accent">Já tem uma conta?</h1>
+                <div className="login-auth-container"><h2>Bem-vindo de volta!</h2>
                     <p>Para se manter conectado conosco,
-                        por favor entre com sua conta pessoal</p>
+                        por favor entre com sua conta pessoal</p></div>
+
 
                 <Button className="classBtn-prim" buttonText="Entrar" isOutlined={true} />
             </div>
@@ -41,4 +42,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;
