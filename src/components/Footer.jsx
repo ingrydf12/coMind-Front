@@ -21,7 +21,7 @@ const Footer = () => {
                 <div className="social-media">
                     <h2>Redes Sociais</h2>
                     <a href="#intagram"><BsInstagram size={30} style={{ fill: 'white' }} /></a>
-                    <a href="x"><SlSocialTwitter size={30} style={{ fill: 'white' }} /></a>
+                    <a href="#x"><SlSocialTwitter size={30} style={{ fill: 'white' }} /></a>
                 </div>
             </div>
             <hr /> 

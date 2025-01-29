@@ -1,0 +1,107 @@
+body {
+    background-color: #fff;
+}
+
+.form-medic {
+    padding-inline: 1rem;
+    color: #000;
+    margin-bottom: 2rem;
+}
+
+.form-medic hr {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    max-width: 50%;
+    margin-left: 0;
+}
+
+.personal,
+.formation-courses,
+.service,
+.free-service {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.formation-courses,
+.service {
+    align-items: center;
+}
+
+.service {
+    gap: 3rem;
+}
+
+.free-service {
+    flex-direction: column;
+}
+
+.main-title,
+.sub-title {
+    display: block;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+.main-title {
+    font-size: 1.5rem;
+}
+
+.type-large,
+.type-short,
+textarea {
+    border-radius: 0.625rem;
+    border: 1px solid #232E9D;
+    background: #FFF;
+    color: #000;
+}
+
+.type-large {
+    width: 22rem;
+    height: 2rem;
+    margin: 1rem;
+}
+
+.type-short {
+    width: 5rem;
+    height: 2rem;
+    margin: 1rem;
+}
+
+textarea {
+    width: 25rem;
+    margin: 1rem;
+}
+
+.type-large:focus,
+.type-short:focus,
+textarea:focus {
+    background-color: #232E9D;
+    color: #FFF;
+    outline: none;
+}
+
+.type-large:focus::placeholder,
+.type-short:focus::placeholder,
+textarea:focus::placeholder {
+    color: #FFF
+}
+
+fieldset {
+    display: inline-block;
+    border: none;
+}
+
+legend {
+    font-weight: bold;
+}
+
+.form-button {
+    width: 16.875rem;
+    background-color: #232E9D;
+    color: #FFF;
+}
+
+.button-side {
+    display: flex;
+    justify-content: end;
+}
