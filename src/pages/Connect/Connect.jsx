@@ -1,8 +1,14 @@
 import Button from "../../components/Button/Button"
 import CustomLink from "../../components/CustomLink/CustomLink"
 import "../../styles/Connect.css"
+import { useNavigate } from "react-router-dom"
 
 const Connect = () => {
+    const navigate = useNavigate();
+    const handleRedirect = () => {
+        navigate('/login');  //descobri que devo usar a / pra indicar que é um caminho absoluto
+      };
+
     return (
         <main className="login-container">
             <div className="login-auth">
@@ -12,7 +18,7 @@ const Connect = () => {
                         por favor entre com sua conta pessoal</p></div>
 
 
-                <Button className="classBtn-prim" buttonText="Entrar" isOutlined={true} href="login"/>
+                <Button className="classBtn-prim" buttonText="Entrar" isOutlined={true} onClick={handleRedirect}/>
             </div>
 
             <div className="register-auth">

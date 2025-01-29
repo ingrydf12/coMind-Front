@@ -48,7 +48,7 @@ const Login = () => {
                         <input type="email" id="email" placeholder="Seu email" onChange={(e) => setEmail(e.target.value)} />
                         <input type="password" id="password" placeholder="Sua senha" onChange={(e) => setPassword(e.target.value)} />
                     </div>
-                    <Button className="classBtn-out-prim" buttonText="Entrar" isOutlined={true} type="submit"/>
+                    <Button className="classBtn-out-prim" buttonText="Entrar" isOutlined={true} type="submit" onClick={handleLogin}/>
                 </form>
 
                 {error && <p style={{ color: 'red' }}>{error}</p>}
