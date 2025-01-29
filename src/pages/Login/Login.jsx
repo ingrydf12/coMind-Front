@@ -3,6 +3,7 @@ import React from "react"
 import '../../styles/Login.css';
 import { authenticateUser } from '../../utils/validation';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -10,6 +11,12 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const navigate = useNavigate();
+
+    //Função pra redirecionar pro dahsboard (falta colocar um contexto pra essa página)
+    const handleRedirect = () => {
+        navigate('/dashboard'); 
+      };
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -18,8 +25,10 @@ const Login = () => {
         setSuccessMessage('');
 
         try {
-            const response = await authenticateUser(email, password); // chama a função de autenticação passando o email e senha aqui
+            const response = await authenticateUser(email, password); // chama a função de autenticação passando o email e senha aqui -> se for true, redireciona pro dashboard
             setSuccessMessage(response.message);
+            
+            handleRedirect();
         } catch (err) {
             setError(err.message);
         } finally {
@@ -39,7 +48,7 @@ const Login = () => {
                         <input type="email" id="email" placeholder="Seu email" onChange={(e) => setEmail(e.target.value)} />
                         <input type="password" id="password" placeholder="Sua senha" onChange={(e) => setPassword(e.target.value)} />
                     </div>
-                    <Button className="classBtn-out-prim" buttonText="Entrar" isOutlined={true} type="submit" />
+                    <Button className="classBtn-out-prim" buttonText="Entrar" isOutlined={true} type="submit"/>
                 </form>
 
                 {error && <p style={{ color: 'red' }}>{error}</p>}

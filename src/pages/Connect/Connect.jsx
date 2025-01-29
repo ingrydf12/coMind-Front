@@ -12,7 +12,7 @@ const Connect = () => {
                         por favor entre com sua conta pessoal</p></div>
 
 
-                <Button className="classBtn-prim" buttonText="Entrar" isOutlined={true} />
+                <Button className="classBtn-prim" buttonText="Entrar" isOutlined={true} href="login"/>
             </div>
 
             <div className="register-auth">
