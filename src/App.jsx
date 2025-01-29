@@ -4,6 +4,7 @@ import RedirectRoute from './components/RedirectRoute/RedirectRoute'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Layout from './components/Layout/Layout'
+import Connect from './pages/Connect/Connect'
 import Dashboard from './pages/Dashboard/Dashboard'
 
 export const router = createBrowserRouter([
@@ -34,7 +35,8 @@ export const router = createBrowserRouter([
             <Register />
           </RedirectRoute>
         )
-      },{
+      },
+      {
         path: "dashboard",
         element: (
           <RedirectRoute>
