@@ -4,6 +4,8 @@ import RedirectRoute from './components/RedirectRoute/RedirectRoute'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Layout from './components/Layout/Layout'
+import Connect from './pages/Connect/Connect'
+import Dashboard from './pages/Dashboard/Dashboard'
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +13,15 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/auth",
+        path: "auth",
+        element: (
+          <RedirectRoute>
+            <Connect />
+          </RedirectRoute>
+        )
+      },
+      {
+        path: "login",
         element: (
           <RedirectRoute>
             <Login />
@@ -19,10 +29,18 @@ export const router = createBrowserRouter([
         )
       },
       {
-        path: "/register",
+        path: "register",
         element: (
           <RedirectRoute>
             <Register />
+          </RedirectRoute>
+        )
+      },
+      {
+        path: "dashboard",
+        element: (
+          <RedirectRoute>
+            <Dashboard />
           </RedirectRoute>
         )
       }

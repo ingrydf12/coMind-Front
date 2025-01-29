@@ -12,11 +12,11 @@ const Register = () => {
                 <h1>Crie sua conta</h1>
             <form className="form-signin" action="">
                     <div className="form-signin-components">
-                        <input placeholder="Seu nome completo" />
-                        <input placeholder="Seu email" />
-                        <input placeholder="Senha com mínino de 6 caracteres" />
+                        <input type="text" placeholder="Seu nome completo" />
+                        <input type="email" placeholder="Seu email" />
+                        <input type="password" placeholder="Senha com mínimo de 6 caracteres" />
                     </div>
-                    <Button className="classBtn-out-prim" buttonText="Criar conta" isOutlined={false} />
+                    <Button type="submit" className="classBtn-out-prim" buttonText="Criar conta" isOutlined={false} />
                 </form>
             </div>
         </main>
