@@ -22,12 +22,15 @@
 .sign-log {
     background-color: #fafafa;
     color: #322D3F;
-    justify-items: center;
+    text-align: center;
+    justify-content: center;
     align-content: center;
+    align-items: center;
     padding: 3rem;
 }
 
 .form-log{
+    align-items: center;
     justify-items: center;
 }
 
