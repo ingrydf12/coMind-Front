@@ -1,0 +1,29 @@
+.classBtn-prim {
+    font-size: 1rem;
+    color: fff;
+    padding: 0.8rem 3rem;
+    border: 2px solid;
+    color: #fff;
+    border-radius: 5px;
+    border-color: #232E9D;
+    background-color: #232E9D;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.classBtn-out-prim {
+    font-size: 1rem;
+    color: fff;
+    padding: 0.8rem 3rem;
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: #232E9D;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.classBtn-prim:hover,
+.classBtn-out-prim:hover {
+    color: #fff;
+    background-color: #1c237b;
+    border-color: #1c237b;
+    transform: scale(1.05);
+}

@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.register-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.register-banner{
+    display: flex;
+    padding: 2rem;
+    background-color: #9D48D6;
+    justify-items: center;
+    justify-content: center;
+}
+
+.register-log{
+    background-color: #fafafa;
+    color: #322D3F;
+    justify-items: center;
+    align-content: center;
+    padding: 3rem;
+}
+
+.register-banner, .register-log{
+    width: 100%;
+    height: auto;   
+}
+
+@media only screen and (max-width: 600px){
+    .register-container{
+        flex-direction: column;
+    }
+}
