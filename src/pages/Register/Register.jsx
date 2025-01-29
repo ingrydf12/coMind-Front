@@ -16,7 +16,7 @@ const Register = () => {
                         <input placeholder="Seu email" />
                         <input placeholder="Senha com mínino de 6 caracteres" />
                     </div>
-                    <Button className="classBtn-out-prim" buttonText="Criar conta" isOutlined={false} />
+                    <Button className="classBtn-out-prim" href="/medic-pacient" buttonText="Criar conta" isOutlined={false} />
                 </form>
             </div>
         </main>

@@ -1,5 +1,5 @@
-import React from 'react';
-import '../styles/FormMedic.css'
+import React from "react";
+import "../../styles/FormMedic.css"
 
 const FormMedic = () => {
 
@@ -21,7 +21,7 @@ const FormMedic = () => {
                 </div>
 
                 <div clasName="personal">
-                    <fieldset>
+                    <fieldset className="fieldset-form">
                         <legend>Gênero</legend>
                         <input type="radio" id="masculine" name="gender" required />
                         <label for="masculine">Masculino</label>
@@ -33,16 +33,19 @@ const FormMedic = () => {
                         <label for="not-inform">Prefiro não informar</label>
                     </fieldset>
 
-                    <textarea id="about-you" name="about-you" placeholder="Escreva sobre você" rows="5" cols="30" required />
+                    <textarea className="textarea-form" id="about-you" name="about-you" placeholder="Escreva sobre você" rows="5" cols="30" required />
                 </div>
             </div>
-            <hr />
+
+            <div className="line-side">
+                <hr className="form-line" />   
+            </div>
 
             {/* Formações e Cursos */}
             <div className="formation-courses">
                 <div>
                     <label className="main-title" for="formation">Formações e Cursos</label>
-                    <textarea id="formation" name="formation" placeholder="Digite aqui sobre sua formação" rows="5" cols="30" required />
+                    <textarea className="textarea-form" id="formation" name="formation" placeholder="Digite aqui sobre sua formação" rows="5" cols="30" required />
                 </div>
                 
                 <div>
@@ -56,13 +59,16 @@ const FormMedic = () => {
                     </div>
                 </div>
             </div>
-            <hr />
+
+            <div className="line-side">
+                <hr className="form-line" />   
+            </div>
 
             {/* Informações de Atendimento */}
             <div>
                 <label className="main-title">Atendimento</label>
                 <div className="service">
-                    <fieldset>
+                    <fieldset className="fieldset-form">
                         <legend>Você quer atender</legend>
                         <input type="checkbox" id="child" name="public" required />
                         <label for="child">Crianças</label>
@@ -89,45 +95,51 @@ const FormMedic = () => {
                     </div>
                 </div>
 
-                <fieldset className="schedules">
+                <fieldset className="fieldset-form">
                     <legend>Dias e horários de atendimento</legend>
-                    <input type="checkbox" />
+                    <input type="checkbox" id="sun" name="schedules" />
                     <label>Domingo</label>
                     <input className="type-short" type="time" />
                     <label>às</label>
                     <input className="type-short" type="time" />
                     <br />
-                    <input type="checkbox" />
+
+                    <input type="checkbox" id="mon" name="schedules" />
                     <label>Segunda-feira</label>
                     <input className="type-short" type="time" />
                     <label>às</label>
                     <input className="type-short" type="time" />
                     <br />
-                    <input type="checkbox" />
+
+                    <input type="checkbox" id="tue" name="schedules" />
                     <label>Terça-feira</label>
                     <input className="type-short" type="time" />
                     <label>às</label>
                     <input className="type-short" type="time" />
                     <br />
-                    <input  type="checkbox" />
+
+                    <input  type="checkbox"  id="wed" name="schedules" />
                     <label>Quarta-feira</label>
                     <input className="type-short" type="time" />
                     <label>às</label>
                     <input className="type-short" type="time" />
                     <br />
-                    <input type="checkbox" />
+
+                    <input type="checkbox" id="thu" name="schedules" />
                     <label>Quinta-feira</label>
                     <input className="type-short" type="time" />
                     <label>às</label>
                     <input className="type-short" type="time" />
                     <br />
-                    <input type="checkbox" />
+
+                    <input type="checkbox" id="fri" name="schedules" />
                     <label>Sexta-feira</label>
                     <input className="type-short" type="time" />
                     <label>às</label>
                     <input className="type-short" type="time" />
                     <br />
-                    <input type="checkbox" />
+
+                    <input type="checkbox" id="sat" name="schedules" />
                     <label>Sábado</label>
                     <input className="type-short" type="time" />
                     <label>às</label>
@@ -135,7 +147,7 @@ const FormMedic = () => {
                 </fieldset>
 
                 <div className="free-service">
-                    <fieldset>
+                    <fieldset className="fieldset-form">
                         <legend>Pretende fazer atendimentos gratuitos?</legend>
                         <input type="radio" id="yes" name="free" required />
                         <label>Sim</label>
