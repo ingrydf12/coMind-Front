@@ -1,8 +1,33 @@
 import Button from "../../components/Button/Button"
-import React from "react"
+import { useState, React } from "react"
 import '../../styles/Register.css';
+import { registerUser } from '../../utils/validation';
 
 const Register = () => {
+    const [name, setName] = useState('')
+    const [email, setEmail ] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+
+
+    const handleRegister = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+        setError('');
+        setSuccessMessage('');
+
+        try {
+            const response = await registerUser(name, email, password);
+            setSuccessMessage(response.message);
+
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    }
     return (
         <main className="register-container">
             <div className="register-banner">
@@ -12,12 +37,15 @@ const Register = () => {
                 <h1>Crie sua conta</h1>
             <form className="form-signin" action="">
                     <div className="form-signin-components">
-                        <input type="text" placeholder="Seu nome completo" />
-                        <input type="email" placeholder="Seu email" />
-                        <input type="password" placeholder="Senha com mínimo de 6 caracteres" />
+                        <input type="text" onChange={(e) => setName(e.target.value)} placeholder="Seu nome completo" />
+                        <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Seu email" />
+                        <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Senha com mínimo de 6 caracteres" />
                     </div>
-                    <Button type="submit" className="classBtn-out-prim" buttonText="Criar conta" isOutlined={false} />
+                    <Button type="submit" className="classBtn-out-prim" buttonText="Criar conta" isOutlined={false} onClick={handleRegister}/>
                 </form>
+
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
             </div>
         </main>
     )
