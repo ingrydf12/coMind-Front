@@ -1,24 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"
 import "../../styles/MedicPacient.css";
 
 const MedicPacient = () => {
     
     const [selectedBox, setSelectedBox] = useState();
-    const navigate = useNavigate();
 
     const boxClick = (box) => {
         setSelectedBox(box);
     };
 
-    const buttonClick = () => {
-        if (selected === "box1"){
-            navigate("/form-medic")
-        } else if(selected === "box2"){
-            navigate("/form-pacient")
-        };
-    };
- 
     return (
         <main className="selector-main">
             <h1 id="selector-title">Você é Médico ou Paciente?</h1>
@@ -33,10 +23,32 @@ const MedicPacient = () => {
                 </div>
             </div>
             <div id="selector-btn-side">
-                <button id="btn-selector" onClick={buttonClick} disable={!selectedBox}>Prosseguir</button>
-            </div>
+                <button id="btn-selector">
+                    <a href={`${selectedBox === "box1" ? "/form-medic" : "/form-pacient"}`}>Prosseguir</a>
+                </button>
+            </div> 
         </main>
     );
 }
 
 export default MedicPacient;
+
+/*
+<button id="btn-selector" onClick={buttonClick}>
+    Prosseguir
+</button>
+
+<button id="btn-selector">
+    <a href={buttonClick}>Prosseguir</a>
+</button>
+*/
+
+/*
+const buttonClick = () => {
+    if (selected === "box1"){
+        navigate("/form-medic")
+    } else if(selected === "box2"){
+        navigate("/form-pacient")
+    };   
+};
+*/
