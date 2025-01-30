@@ -1,3 +1,5 @@
+![logoCoMindFooter](https://github.com/user-attachments/assets/d5e34a39-5a41-41e7-803e-83cc5dbdfdab)
+
 # coMind
 
 Este repositório contém a parte de front-end da aplicação coMind, utilizando ReactJS, Bootstrap e React-Router.
@@ -35,9 +37,17 @@ src -> diretório com a estrutura de pastas do projeto
     utils -> utilidades dentro do projeto, exemplo: dados mockados.
 ```
 
-
 ## Equipe
 
-|<img src="https://avatars.githubusercontent.com/u/90623907?v=4" width="100">| <img src="https://avatars.githubusercontent.com/u/182433541?v=4" width="100"> |<img src="https://avatars.githubusercontent.com/u/186109669?v=4" width="100"> | |
-|----| -----| -----| ----|
+|<img src="https://avatars.githubusercontent.com/u/90623907?v=4" width="100">| <img src="https://avatars.githubusercontent.com/u/182433541?v=4" width="100"> |<img src="https://avatars.githubusercontent.com/u/186109669?v=4" width="100"> |
+|----| -----| -----|
 | Ingryd Duarte | João Pedro Alves | Kleber Lucas Silva |
+
+<details>
+<summary><strong>Atribuições</strong></summary>
+    
+- João Pedro: Formulários, footer, navegação, design
+- Ingryd: Header, navegação, design e páginas de autenticação
+- Kleber: Home e navegação.
+
+</details>
