@@ -7,6 +7,7 @@ const Dashboard = () => {
         <div className="dashboard-container">
             <img src={inConstruction} alt="under construction"></img>
             <h1>Dashboard</h1>
+            <p>Em construção...</p>
         </div>
     )
 }
