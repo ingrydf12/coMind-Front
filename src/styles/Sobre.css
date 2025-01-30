@@ -1,0 +1,80 @@
+#root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Sobre {
+    background-color: #00207F;
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  
+  .Sobre-text {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .Sobre-text h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .Sobre-text p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+
+
+  /* Contêiner para alinhar os cards lado a lado */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* Faz os cards terem a mesma altura */
+  flex-wrap: wrap; /* Permite que quebrem linha em telas menores */
+  gap: 1.5rem; /* Espaçamento entre os cards */
+  margin-top: 2rem;
+}
+
+/* Ajustes nos cards */
+.card1, .card2, .card3 {
+  background-color: white;
+  color: #322D3F; 
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 300px;
+  min-height: 320px; /* Garante que os cards tenham altura uniforme */
+  justify-content: space-between;
+  flex: 1; /* Distribui os cards igualmente */
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Efeito de balão enchendo ao passar o mouse */
+.card1:hover, .card2:hover, .card3:hover {
+  transform: scale(1.1); /* Aumenta o tamanho */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adiciona um leve destaque */
+}
+
+/* Ajuste do tamanho das imagens */
+.card1 img, .card2 img, .card3 img {
+  width: 110%; /* Faz a imagem se adaptar */
+  max-width: 265px; /* Limita o tamanho */
+  height: auto;
+  margin-top: 1rem; /* Espaçamento entre texto e imagem */
+}
+
+/* Ajuste do texto dentro dos cards */
+.card1 h2, .card2 h3, .card3 h4 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  min-height: 60px; /* Garante que o texto não desapareça */
+  word-wrap: break-word;
+  text-align: center;
+}
