@@ -1,85 +1,93 @@
 #root {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Estilos gerais */
 .Depoimento {
-    font-family: 'league spartan', sans-serif;
-    background-color: #53E0D0; /* Fundo principal */
-    background-image: url(../../public/circleTexture.svg);
-    background-repeat: no-repeat; /* Evita repetição */
-    background-position: right; /* Centraliza a imagem */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 20px;
+  background-color: #53E0D0;
+  background-image: url(../../public/circleTexture.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  display: flex;
+  padding: 5rem;
+  color: #322D3F;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.Depoimento h1 {
+  text-align: center;
+  color: #333;
+  font-size: 5rem;
+}
+
+.depoimento-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 8rem;
+  align-items: center;
+}
+
+.Depoimento-card {
+  background-color: #BCFFF7;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  min-height: 200px;
+  transform: scale(135%);
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.Depoimento-card img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.Depoimento-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.Depoimento-text h2 {
+  font-size: 1.2rem;
+  color: #322D3F;
+  font-size: 2rem;
+
+}
+
+.Depoimento-text h3 {
+  font-size: 0.9rem;
+}
+
+.Depoimento-text p {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .depoimento-container {
+    padding: 4rem 0;
   }
 
-  
-  
-  /* Título da seção */
-  .Depoimento h1 {
-    text-align: center;
-    color: #333;
-    font-size: 1.8rem;
-    margin-bottom: 150px;
-    width: 200%;
-
-  }
-  
-  /* Card de depoimento */
   .Depoimento-card {
-    background-color: #BCFFF7; /* Fundo do card */
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%; 
-    height: 200px;
-    transform: scale(135%);
-    max-width: 600px;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  /* Avatar */
-  .Depoimento-card img {
-    width: 145px;
-    height: 145px;
-    border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Texto do depoimento */
-  .Depoimento-text {
-    display: flex;
+    width: 80%;
+    height: fit-content;
     flex-direction: column;
   }
-  
-  .Depoimento-text h2 {
-    font-size: 1.2rem;
-    color: #322D3F;
-    margin: 0;
-    font-size: 29px;
 
+  .Depoimento-text {
+    text-align: left;
   }
-  
-  .Depoimento-text h3 {
-    font-size: 0.9rem;
-    color: #322D3F;
-    margin: 5px 0 0 0;
-  }
-  
-  .Depoimento-text p {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #322D3F;
-    margin-top: 10px;
-    font-size: 22px;
-  }
+}

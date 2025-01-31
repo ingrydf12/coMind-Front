@@ -1,47 +1,38 @@
 #root {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .Sobre {
-    background-color: #00207F;
-    color: white;
-    text-align: center;
-    padding: 4rem 2rem;
-  }
-  
-  .Sobre-text {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-  .Sobre-text h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .Sobre-text p {
-    font-size: 1.125rem;
-    margin-bottom: 2rem;
-  }
+  background-color: #00207F;
+  color: white;
+  text-align: center;
+  padding: 5rem;
+}
 
+.Sobre-text h1 {
+  font-size: 5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
 
-  /* Contêiner para alinhar os cards lado a lado */
+.Sobre-text p {
+  font-size: 1.2rem;
+}
+
 .card-container {
   display: flex;
   justify-content: center;
-  align-items: stretch; /* Faz os cards terem a mesma altura */
-  flex-wrap: wrap; /* Permite que quebrem linha em telas menores */
-  gap: 1.5rem; /* Espaçamento entre os cards */
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 1.5rem;
   margin-top: 2rem;
 }
 
-/* Ajustes nos cards */
-.card1, .card2, .card3 {
+.card-sobre {
   background-color: white;
-  color: #322D3F; 
+  color: #322D3F;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -49,32 +40,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 300px;
-  min-height: 320px; /* Garante que os cards tenham altura uniforme */
+  min-height: 320px;
   justify-content: space-between;
-  flex: 1; /* Distribui os cards igualmente */
+  flex: 1;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Efeito de balão enchendo ao passar o mouse */
-.card1:hover, .card2:hover, .card3:hover {
-  transform: scale(1.1); /* Aumenta o tamanho */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adiciona um leve destaque */
+.card-sobre:hover{
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Ajuste do tamanho das imagens */
-.card1 img, .card2 img, .card3 img {
-  width: 110%; /* Faz a imagem se adaptar */
-  max-width: 265px; /* Limita o tamanho */
+.card-sobre img{
+  width: 60%;
   height: auto;
-  margin-top: 1rem; /* Espaçamento entre texto e imagem */
+  margin-top: 1rem;
 }
 
-/* Ajuste do texto dentro dos cards */
-.card1 h2, .card2 h3, .card3 h4 {
+.card-sobre h2, .card-sobre h3, .card-sobre h4 {
   font-size: 1.125rem;
   font-weight: bold;
-  min-height: 60px; /* Garante que o texto não desapareça */
+  min-height: 60px;
   word-wrap: break-word;
   text-align: center;
+}
+
+@media only screen and (max-width: 600px){
+  .card-container{
+    flex-direction: column;
+  }
 }
