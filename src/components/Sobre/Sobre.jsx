@@ -31,5 +31,4 @@ const Sobre = () => {
     );
 }
 
-export default Sobre; 
-
+export default Sobre;
