@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom"
 import Banner from "../../components/Banner/Banner"
 import Sobre from "../../components/Sobre/Sobre"
 import Indicacoes from "../../components/Indicacoes/Indicacoes"
@@ -15,4 +14,4 @@ const Home = () => {
     )
 }
 
-export default Home ;
+export default Home;
