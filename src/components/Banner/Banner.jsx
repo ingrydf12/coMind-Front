@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Banner = () => { 
     const navigate = useNavigate();
     const handleRedirect = () => {
-        navigate('/login');  //descobri que devo usar a / pra indicar que é um caminho absoluto
+        navigate('/login');
       };
       
     return (
