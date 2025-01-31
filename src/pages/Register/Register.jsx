@@ -1,9 +1,12 @@
 import Button from "../../components/Button/Button"
 import { useState, React } from "react"
+import { useNavigate } from "react-router-dom";
 import '../../styles/Register.css';
 import { registerUser } from '../../utils/validation';
 
 const Register = () => {
+    const navigate = useNavigate();
+
     const [name, setName] = useState('')
     const [email, setEmail ] = useState('');
     const [password, setPassword] = useState('');
@@ -11,12 +14,12 @@ const Register = () => {
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
-
     const handleRegister = async (event) => {
         event.preventDefault();
         setLoading(true);
         setError('');
         setSuccessMessage('');
+        navigate("/medic-pacient");
 
         try {
             const response = await registerUser(name, email, password);
@@ -35,7 +38,7 @@ const Register = () => {
             </div>
             <div className="register-log">
                 <h1>Crie sua conta</h1>
-            <form className="form-signin" action="">
+            <form className="form-signin" onSubmit={handleRegister}>
                     <div className="form-signin-components">
                         <input type="text" onChange={(e) => setName(e.target.value)} placeholder="Seu nome completo" />
                         <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Seu email" />
