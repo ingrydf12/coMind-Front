@@ -12,11 +12,11 @@ const Footer = () => {
                 <div className="site-map">
                     <h2>Mapa do Site</h2>
                     <ul>
-                        <li><a href="#home">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="#filter">Buscar</a></li>
-                        <li><a href="#about">Sobre</a></li>
-                        <li><a href="#indications">Indicações</a></li>
-                        <li><a href="#testimonials">Depoimentos</a></li>
+                        <li><a href="/about">Sobre</a></li>
+                        <li><a href="/indications">Indicações</a></li>
+                        <li><a href="/testimonials">Depoimentos</a></li>
                     </ul>
                 </div>
                 <div className="social-media">
