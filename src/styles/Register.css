@@ -1,21 +1,26 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 .register-container{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    height: 100vh;
 }
 
 .register-banner{
     display: flex;
     padding: 2rem;
     background-color: #9D48D6;
+    align-items: center;
     justify-items: center;
-    justify-content: center;
+}
+
+.register-banner img{
+    width: 100%;
+    height: fit-content;
 }
 
 .register-log{
@@ -24,6 +29,17 @@
     justify-items: center;
     align-content: center;
     padding: 3rem;
+}
+
+.register-auth {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+    background-color: #fafafa;
+    color: #322D3F;
+    width: 100%;
+    gap: 1rem;
+    justify-content: center;
 }
 
 .form-signin{
@@ -54,11 +70,11 @@
 
 .register-banner, .register-log{
     width: 100%;
-    height: auto;   
 }
 
 @media only screen and (max-width: 600px){
     .register-container{
+        display: flex;
         flex-direction: column;
     }
 }

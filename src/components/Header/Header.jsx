@@ -1,11 +1,18 @@
 import React from "react";
 import '../../styles/Header.css';
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const navigate = useNavigate();
+
+    const backToHome = () => {
+        navigate('/'); 
+      };
+    
     return (
         <Navbar bg="dark" variant="light" expand="lg">
-            <img src="logoCoMind.svg" alt="logo"></img>
+            <img src="logoCoMind.svg" alt="logo" onClick={backToHome}></img>
             <Container>
                 <Nav className="mr-auto">
                     <Nav.Link href="#sobre">Sobre</Nav.Link>

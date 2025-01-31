@@ -1,12 +1,18 @@
-//import "../../styles/Home.css"
-import Banner from "../../components/Banner/Banner";
+import { Outlet } from "react-router-dom"
+import Banner from "../../components/Banner/Banner"
+import Sobre from "../../components/Sobre/Sobre"
+import Indicacoes from "../../components/Indicacoes/Indicacoes"
+import Depoimentos from "../../components/Depoimentos/Depoimentos"
 
 const Home = () => {
     return (
-        <main>
+        <>
             <Banner />
-        </main>
+            <Sobre />
+            <Indicacoes />
+            <Depoimentos />
+        </>
     )
 }
 
-export default Home;
+export default Home ;
