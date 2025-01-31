@@ -1,8 +1,14 @@
-import Button from "../../components/Button/Button"
-import React from "react"
+import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
 import '../../styles/Register.css';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const handleRegister = (e) => {
+        e.preventDefault();
+        navigate("/medic-pacient");
+    };
+
     return (
         <main className="register-container">
             <div className="register-banner">
@@ -10,13 +16,13 @@ const Register = () => {
             </div>
             <div className="register-log">
                 <h1>Crie sua conta</h1>
-            <form className="form-signin" action="">
+            <form className="form-signin" onSubmit={handleRegister}>
                     <div className="form-signin-components">
-                        <input placeholder="Seu nome completo" />
-                        <input placeholder="Seu email" />
-                        <input placeholder="Senha com mínino de 6 caracteres" />
+                        <input placeholder="Seu nome completo" required />
+                        <input placeholder="Seu email" required />
+                        <input placeholder="Senha com mínino de 6 caracteres" required />
                     </div>
-                    <Button className="classBtn-out-prim" href="/medic-pacient" buttonText="Criar conta" isOutlined={false} />
+                    <Button className="classBtn-out-prim" buttonText="Criar conta" isOutlined={false} onClick={handleRegister} />
                 </form>
             </div>
         </main>
