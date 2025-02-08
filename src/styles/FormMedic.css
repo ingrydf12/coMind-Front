@@ -7,6 +7,7 @@
 .line-side {
     display: flex;
     text-align: left;
+    margin-block: 2rem;
 }
 
 .form-line {
@@ -87,14 +88,16 @@
     color: #FFF
 }
 
-.fieldset-form legend {
-    font-weight: bold;
-}
-
 .fieldset-form {
     display: inline-block;
     border: none;
     margin-left: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.fieldset-form legend {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
 .fieldset-form label {

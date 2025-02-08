@@ -7,7 +7,12 @@ const Connect = () => {
     const navigate = useNavigate();
     const handleRedirect = () => {
         navigate('/login');  //descobri que devo usar a / pra indicar que é um caminho absoluto
-      };
+    };
+
+    const handleRegister = (event) => {
+        event.preventDefault();
+        navigate("/medic-pacient");
+    }
 
     return (
         <main className="login-container">
@@ -41,7 +46,7 @@ const Connect = () => {
                         <input placeholder="Senha com mínino de 6 caracteres" />
                     </div>
 
-                    <Button className="classBtn-out-prim" buttonText="Criar conta" isOutlined={false} />
+                    <Button className="classBtn-out-prim" buttonText="Criar conta" isOutlined={false} onClick={handleRegister} />
                 </form>
             </div>
         </main>
