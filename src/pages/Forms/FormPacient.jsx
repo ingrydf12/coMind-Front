@@ -64,12 +64,12 @@ const FormPacient = () => {
 
                         <div>
                             <label className="sub-title" for="medicines-yes">Quais as suas principais queixas?</label>
-                            <textarea className="textarea-form" id="medicines-yes" name="medicines-yes" placeholder="Escreva as suas queixas" rows="5" cols="30" required />
+                            <textarea className="textarea-form" id="complaints" name="complaints" placeholder="Escreva as suas queixas" rows="5" cols="30" required />
                         </div>
 
                         <div>
                             <label className="sub-title" for="medicines-yes">Há histórico de doenças da mente na sua família?</label>
-                            <textarea className="textarea-form" id="medicines-yes" name="medicines-yes" placeholder="Escreva um pouco sobre" rows="5" cols="30" required />
+                            <textarea className="textarea-form" id="historical" name="historical" placeholder="Escreva um pouco sobre" rows="5" cols="30" required />
                         </div>
 
                         <div>
