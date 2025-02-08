@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/FormMedic.css"
+import "../../styles/Forms.css"
 
 const FormMedic = () => {
 

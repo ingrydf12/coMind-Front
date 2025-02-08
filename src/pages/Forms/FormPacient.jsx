@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/FormPacient.css"
+import "../../styles/Forms.css"
 
 
 const FormPacient = () => {

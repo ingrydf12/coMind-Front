@@ -4,6 +4,12 @@
     background-color: #FFF;
 }
 
+.form-pacient {
+    padding: 2rem;
+    color: #000;
+    background-color: #FFF;
+}
+
 .line-side {
     display: flex;
     text-align: left;
