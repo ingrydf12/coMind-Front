@@ -4,7 +4,7 @@ import "../../styles/Forms.css"
 const FormMedic = () => {
 
     return(
-        <form className="form-medic">
+        <form className="form-style">
             <h1>Preencha com suas informações</h1>
             {/* Informações Pessoais */}
             <div>
