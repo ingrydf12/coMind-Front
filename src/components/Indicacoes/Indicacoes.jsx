@@ -1,4 +1,4 @@
-import '../../styles/Indicacoes.css';
+import './Indicacoes.css';
 
 const Indicacoes = () => {
     return (

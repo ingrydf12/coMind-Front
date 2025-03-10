@@ -13,7 +13,7 @@
 .register-banner{
     display: flex;
     padding: 2rem;
-    background-color: #9D48D6;
+    background-color: var(--bg-container);
     align-items: center;
     justify-items: center;
 }

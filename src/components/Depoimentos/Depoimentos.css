@@ -1,16 +1,10 @@
-#root {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.Depoimento {
-  background-color: #53E0D0;
-  background-image: url(../../public/circleTexture.svg);
+.depoimento {
+  background-color: var(--main-color);
+  background-image: url(../../circleTexture.svg);
   background-repeat: no-repeat;
   background-position: right;
   display: flex;
-  padding: 5rem;
+  padding: 4rem;
   color: #322D3F;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +12,7 @@
   gap: 1rem;
 }
 
-.Depoimento h1 {
+.depoimento h1 {
   text-align: center;
   color: #333;
   font-size: 5rem;
@@ -28,52 +22,47 @@
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  gap: 8rem;
   align-items: center;
+  gap: 8rem;
 }
 
-.Depoimento-card {
-  background-color: #BCFFF7;
+.depoimento-card {
+  background-color: #EBFFFD;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   min-height: 200px;
   transform: scale(135%);
-  padding: 30px;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.Depoimento-card img {
+.depoimento-card img {
   width: 10rem;
   height: 10rem;
   object-fit: cover;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: white;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.Depoimento-text {
+.depoimento-text {
   display: flex;
   flex-direction: column;
   text-align: left;
 }
 
-.Depoimento-text h2 {
+.depoimento-text h2 {
   font-size: 1.2rem;
   color: #322D3F;
   font-size: 2rem;
 
 }
 
-.Depoimento-text h3 {
+.depoimento-text h3 {
   font-size: 0.9rem;
-}
-
-.Depoimento-text p {
-  font-weight: 600;
-  font-size: 1.2rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -81,13 +70,14 @@
     padding: 4rem 0;
   }
 
-  .Depoimento-card {
+  .depoimento-card {
     width: 80%;
     height: fit-content;
     flex-direction: column;
   }
 
-  .Depoimento-text {
+  .depoimento h1 {
+    font-size: 3.5rem;
     text-align: left;
   }
 }

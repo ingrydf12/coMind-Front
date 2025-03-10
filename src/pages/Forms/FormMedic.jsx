@@ -1,10 +1,10 @@
 import React from "react";
-import "../../styles/FormMedic.css"
+import "../../styles/Forms.css"
 
 const FormMedic = () => {
 
     return(
-        <form className="form-medic">
+        <form className="form-style">
             <h1>Preencha com suas informações</h1>
             {/* Informações Pessoais */}
             <div>
@@ -20,7 +20,7 @@ const FormMedic = () => {
                     </div>
                 </div>
 
-                <div clasName="personal">
+                <div className="personal">
                     <fieldset className="fieldset-form">
                         <legend>Gênero</legend>
                         <input type="radio" id="masculine" name="gender" required />
@@ -50,7 +50,7 @@ const FormMedic = () => {
                 
                 <div>
                     <select className="type-large" id="espec" name="espec" required>
-                        <option value="none" selected disabled hidden>Especialidade</option>
+                        <option value="" selected disabled hidden>Especialidade</option>
                         <option value="anxiety">Ansiedade</option>
                         <option value="depression">Depressão</option>
                     </select>
@@ -150,9 +150,9 @@ const FormMedic = () => {
                     <fieldset className="fieldset-form">
                         <legend>Pretende fazer atendimentos gratuitos?</legend>
                         <input type="radio" id="yes" name="free" required />
-                        <label>Sim</label>
+                        <label for="yes">Sim</label>
                         <input type="radio" id="no" name="free" required />
-                        <label>Não</label>
+                        <label for="no">Não</label>
                     </fieldset>
                     <div>
                         <label className="sub-title">Se sim, quantos?</label>

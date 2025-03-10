@@ -1,6 +1,6 @@
 import React from "react";
 import inConstruction from '../../assets/iconLogistic.svg';
-import "../../styles/Dashboard.css";
+import "./Dashboard.css";
 
 const Dashboard = () => {
     return (

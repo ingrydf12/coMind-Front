@@ -1,5 +1,5 @@
 import React from "react";
-import '../../styles/Header.css';
+import './Header.css';
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +19,7 @@ const Header = () => {
                     <Nav.Link href="#indicacao">Grupos</Nav.Link>
                     <Nav.Link href="#depoiment">Depoimentos</Nav.Link>
                 </Nav>
-                <Button variant="primary" href="/auth">Entrar</Button>
+                <Button variant="primary" href="/login">Entrar</Button>
                 <Button variant="outline-primary" href="/register">Criar conta</Button>
             </Container>
         </Navbar>

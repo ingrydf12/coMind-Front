@@ -1,4 +1,4 @@
-import "../../styles/Sobre.css";
+import "./Sobre.css";
 
 const Sobre = () => {
     return (
@@ -15,12 +15,12 @@ const Sobre = () => {
                     </div>
                     <div className="card-sobre">
                         <img src="src/assets/carrosel2.png" alt="carrosel2.png" />
-                        <h3>Acesso a grupo de apoio virtual</h3>
+                        <h2>Acesso a grupo de apoio virtual</h2>
 
                     </div>
                     <div className="card-sobre">
                         <img src="src/assets/carrosel3.png" alt="carrosel3.png" />
-                        <h4>Desenvolva seu autoconhecimento</h4>
+                        <h2>Desenvolva seu autoconhecimento</h2>
                     </div>
 
                 </div>

@@ -32,8 +32,8 @@
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: start;
-  max-width: 20%;
-  min-height: 22rem;
+  max-width: 30%;
+  min-height: 20rem;
   align-content: center;
   display: inline-block;
   vertical-align: top;
@@ -43,7 +43,7 @@
 .card2 p,
 .card3 p {
   font-size: 1rem;
-  color: #322D3F;
+  color: var(--primary-text);
 }
 
 .card1:hover,
