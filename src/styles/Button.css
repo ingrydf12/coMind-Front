@@ -1,7 +1,39 @@
 .classBtn-prim {
     font-size: 1rem;
-    color: fff;
+    text-decoration: none;
     padding: 0.8rem 3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: #232E9D;
+    background-color: #232E9D;
+    color: #fff;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+
+.classBtn-out-prim {
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.8rem 3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: var(--primary-btn);
+    color: var(--primary-btn);
+    background-color: transparent;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.classBtn-ajuda {
+    font-size: 1rem;
+    text-decoration: none;
+    color: fff;
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    font-weight: 600;
     border: 2px solid;
     color: #fff;
     border-radius: 5px;
@@ -10,19 +42,9 @@
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.classBtn-out-prim {
-    font-size: 1rem;
-    color: fff;
-    padding: 0.8rem 3rem;
-    border: 2px solid;
-    border-radius: 5px;
-    border-color: #232E9D;
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-
 .classBtn-prim:hover,
-.classBtn-out-prim:hover {
-    color: #fff;
+.classBtn-out-prim:hover, .classBtn-ajuda:hover {
+    color: white;
     background-color: #1c237b;
     border-color: #1c237b;
     transform: scale(1.05);

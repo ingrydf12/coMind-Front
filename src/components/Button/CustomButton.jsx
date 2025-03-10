@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../styles/Button.css";
 
-const Button = ({ buttonText, className, isOutlined, onClick}) => {
+const CustomButton = ({ buttonText, className, isOutlined, onClick}) => {
 
     const baseClass = isOutlined ? "classBtn-out-prim" : "classBtn-prim";
     const combinedClass = `${baseClass} ${className || ""}`.trim();
@@ -12,4 +12,4 @@ const Button = ({ buttonText, className, isOutlined, onClick}) => {
     )
 }
 
-export default Button
+export default CustomButton

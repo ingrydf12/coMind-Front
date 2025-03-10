@@ -1,7 +1,7 @@
-import Button from "../../components/Button/Button"
+import Button from "../../components/Button/CustomButton"
 import { useState, React } from "react"
 import { useNavigate } from "react-router-dom";
-import '../../styles/Register.css';
+import './Register.css';
 import { registerUser } from '../../utils/validation';
 
 const Register = () => {
