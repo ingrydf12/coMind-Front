@@ -1,0 +1,53 @@
+.banner {
+    background-color: #fafafa;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 2rem 0;
+    gap: 1.2rem;
+}
+
+.banner-text {
+    display: flex;
+    width: 40%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    color: #322D3F;
+    text-align: left;
+    overflow-wrap: break-word;
+}
+
+.banner-text h1 {
+    font-size: 5rem;
+}
+
+.banner-text p {
+    font-size: 1.5rem;
+    color: #322D3F;
+}
+
+.btnAjuda:hover {
+    color: #fff;
+    background-color: #1c237b;
+    border-color: #1c237b;
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 1200px) {
+    .banner{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .banner-text{
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .banner img{
+        width: 80%;
+        object-fit: cover;
+    }
+}
