@@ -1,6 +1,6 @@
 .selector-main {
     background-color: #FFF;
-    padding: 2rem;
+    padding: 6rem 0;
 }
 
 #selector-title {
@@ -18,20 +18,20 @@
     gap: 8rem;
     padding: 1rem;
     justify-content: center;
+    padding: 3rem;
 }
 
 .selector-box {
     text-align: center;
     border-radius: 0.9375rem;
-    border: 5px solid #232E9D;
+    border: 5px solid var(--main-color);
     background: #F8F8FF;
 }
 
 .box-contrast {
     text-align: center;
     border-radius: 0.9375rem;
-    border: 5px solid #BCFFF7;
-    background: #232E9D;
+    border: 5px solid #232E9D;
     transform: translateY(-1rem);
     transition: transform .5s;
 }
@@ -39,7 +39,6 @@
 .selector-box-blur {
     text-align: center;
     border-radius: 0.9375rem;
-    border: 5px solid #232E9D;
     background: #F8F8FF;
     filter: blur(2px);
 }
@@ -59,7 +58,7 @@
 }
 
 .subtitle-contrast {
-    color: #FFF;
+    color: black;
     font-size: 2.25rem;
     font-style: normal;
     font-weight: 600;
@@ -69,15 +68,4 @@
 
 #selector-btn-side {
     text-align: center;
-}
-
-#btn-selector {
-    width: 12.3125rem;
-    height: 3.25rem;
-    border-radius: 0.9375rem;
-    font-size: 1.2rem;
-    color: #FFF;
-    background: #232E9D;
-    padding: 1rem;
-    margin: 3rem;
 }
