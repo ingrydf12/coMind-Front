@@ -1,7 +1,7 @@
 import React from "react";
 import { BsInstagram } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
-import '../../styles/Footer.css';
+import './Footer.css';
 
 const Footer = () => {
     return (
