@@ -1,12 +1,12 @@
 import React from "react";
 import "../../styles/Forms.css"
+import Button from "../../components/Button/CustomButton";
+
 
 const FormMedic = () => {
-
     return(
         <form className="form-style">
             <h1>Preencha com suas informações</h1>
-            {/* Informações Pessoais */}
             <div>
                 <div className="personal">
                     <div>
@@ -15,8 +15,8 @@ const FormMedic = () => {
                     </div>
 
                     <div>
-                        <label className="main-title" for="crp">CRP</label>
-                        <input className="type-large" type="text" id="crp" name="crp" required />
+                        <label className="main-title" for="crp">Matrícula Profissional</label>
+                        <input className="type-large" type="text" id="crp" name="crp" required placeholder="Exemplo: CRP"/>
                     </div>
                 </div>
 
@@ -41,7 +41,6 @@ const FormMedic = () => {
                 <hr className="form-line" />   
             </div>
 
-            {/* Formações e Cursos */}
             <div className="formation-courses">
                 <div>
                     <label className="main-title" for="formation">Formações e Cursos</label>
@@ -55,7 +54,6 @@ const FormMedic = () => {
                         <option value="depression">Depressão</option>
                     </select>
                     <div>
-                    {/* Caixinhas de especialidade vem aqui */}
                     </div>
                 </div>
             </div>
@@ -64,12 +62,11 @@ const FormMedic = () => {
                 <hr className="form-line" />   
             </div>
 
-            {/* Informações de Atendimento */}
             <div>
                 <label className="main-title">Atendimento</label>
                 <div className="service">
                     <fieldset className="fieldset-form">
-                        <legend>Você quer atender</legend>
+                        <legend>Faixa etária:</legend>
                         <input type="checkbox" id="child" name="public" required />
                         <label for="child">Crianças</label>
                         <br />
@@ -87,10 +84,10 @@ const FormMedic = () => {
                     </fieldset>
 
                     <div>
-                        <label className="sub-title">Valor do atendimento:</label>
-                        <input className="type-short" type="text" id="price" name="price" required />
+                        {/* Aqui deve ter algo pra substituir o que tinha antes (valor), tipo datas disponíveis, contendo dia e horário*/}
                         <br />
-                        <label className="sub-title">Local:</label>
+                        {/* MARK: Provavelmente deve ser removido, já que é totalmente remoto. */}
+                        <label className="sub-title">Região</label>
                         <input className="type-large" type="text" id="local" name="local" required />
                     </div>
                 </div>
@@ -162,7 +159,7 @@ const FormMedic = () => {
             </div>
 
             <div className="button-side">
-                <button className="form-button">Enviar</button>
+            <Button type="submit" className="classBtn-prim" buttonText="Enviar" isOutlined={false}/>
             </div>
         </form>
     );

@@ -7,11 +7,10 @@
 .line-side {
     display: flex;
     text-align: left;
-    margin-block: 2rem;
 }
 
 .form-line {
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     max-width: 50%;
 }
 
@@ -66,7 +65,7 @@
 .type-short {
     width: 5rem;
     height: 2rem;
-    margin: 1rem;
+    margin:1rem;
 }
 
 .textarea-form {
@@ -77,8 +76,7 @@
 .type-large:focus,
 .type-short:focus,
 .textarea-form:focus {
-    background-color: #232E9D;
-    color: #FFF;
+    color: var(--primary-text);
     outline: none;
 }
 
@@ -110,13 +108,6 @@
 
 }
 
-.form-button {
-    width: 16.875rem;
-    background-color: #232E9D;
-    color: #FFF;
-}
-
 .button-side {
     display: flex;
-    justify-content: end;
 }
