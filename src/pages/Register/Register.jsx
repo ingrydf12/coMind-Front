@@ -40,7 +40,7 @@ const Register = () => {
                 <h1>Crie sua conta</h1>
             <form className="form-signin" onSubmit={handleRegister}>
                     <div className="form-signin-components">
-                        <input type="text" onChange={(e) => setName(e.target.value)} placeholder="Seu nome completo" />
+                        <input type="text" onChange={(e) => setName(e.target.value)} placeholder="Seu nome de usuário" />
                         <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Seu email" />
                         <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Senha com mínimo de 6 caracteres" />
                     </div>
