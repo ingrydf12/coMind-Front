@@ -8,8 +8,11 @@
   color: #322D3F;
   background-color: #F8F8F8;
   text-align: center;
-  padding: 4rem;
+  padding: 15rem;
   height: 100%;
+  background-image: url("../../assets/textures/textureGroupes.png");
+  background-position: center;
+  background-size: cover;
 }
 
 .Indicacoes-text {
