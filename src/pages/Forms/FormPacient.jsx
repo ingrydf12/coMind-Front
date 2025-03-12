@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/Forms.css";
+import Button from "../../components/Button/CustomButton";
 
 const LIST_DATA = [
     { id: "depression", name: "depression", value: "Depressão" },
@@ -138,7 +139,7 @@ const FormPacient = () => {
             </div>
 
             <div className="line-side">
-                <hr className="form-line" />   
+                <hr className="form-line" />
             </div>
 
             {/* Informações de Atendimento */}
@@ -248,8 +249,9 @@ const FormPacient = () => {
 
             </div>
 
+        {/* MARK: - Precisa verificar o submit do formulario de registro */}
             <div className="button-side">
-                <button className="form-button">Enviar</button>
+                <Button type="submit" className="classBtn-prim" buttonText="Enviar" isOutlined={false}/>
             </div>
         </form>
     );

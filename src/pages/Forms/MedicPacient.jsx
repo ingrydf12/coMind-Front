@@ -1,5 +1,5 @@
-import { useNavigate} from "react-router-dom";
-import { useState} from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "../../styles/MedicPacient.css";
 import doctorImage from "../../assets/doctorMedia.png";
 import pacientImage from "../../assets/pacientMedia.png";
@@ -22,7 +22,7 @@ const MedicPacient = () => {
 
     return (
         <main className="selector-main">
-            <h1 id="selector-title">Você é Médico ou Paciente?</h1>
+            <h1 id="selector-title">Você é médico ou paciente?</h1>
             <div id="selector">
                 <div 
                     id="box1" 
@@ -44,6 +44,7 @@ const MedicPacient = () => {
             <div id="selector-btn-side">
                 <button 
                     id="btn-selector" 
+                    class={`classBtn-prim ${!selectedBox ? 'btn-disabled' : ''}`}
                     onClick={buttonClick} 
                     disabled={!selectedBox} 
                 >

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import "../../styles/Forms.css"
+import Button from "../../components/Button/CustomButton";
 
 const LIST_DATA = [
     { id: "depression", name: "depression", value: "Depressão" },
@@ -80,7 +81,6 @@ const FormMedic = () => {
     return(
         <form className="form-style" onSubmit={handleSubmit}>
             <h1>Preencha com suas informações</h1>
-            {/* Informações Pessoais */}
             <div>
                 <div className="personal">
                     <div>
@@ -98,16 +98,8 @@ const FormMedic = () => {
                     </div>
 
                     <div>
-                        <label className="main-title" htmlFor="registration">CRP</label>
-                        <input 
-                            className="type-large" 
-                            type="text" 
-                            id="registration" 
-                            name="registration" 
-                            required
-                            value={formData.registration}
-                            onChange={handleChange}
-                        />
+                        <label className="main-title" htmlFor="registration">Matrícula Profissional</label>
+                        <input className="type-large" type="text" id="registration" name="registration" required placeholder="Exemplo: CRP"/>
                     </div>
                 </div>
 
@@ -166,7 +158,6 @@ const FormMedic = () => {
                 <hr className="form-line" />   
             </div>
 
-            {/* Formações e Cursos */}
             <div className="formation-courses">
                 <div>
                     <label className="main-title" htmlFor="formation">Formações e Cursos</label>
@@ -218,15 +209,14 @@ const FormMedic = () => {
                 <hr className="form-line" />   
             </div>
 
-            {/* Informações de Atendimento */}
             <div>
                 <label className="main-title">Atendimento</label>
 
                 <div className="service">
                     {/* Público */}
                     <fieldset className="fieldset-form">
-                        <legend>Você quer atender</legend>
-
+                        <legend>Faixa etária:</legend>
+                        
                         <input type="checkbox" id="child" name="child" checked={formData.child} onChange={handleChange} />
                         <label htmlFor="child">Crianças</label>
                         <br />
@@ -248,27 +238,11 @@ const FormMedic = () => {
                     </fieldset>
 
                     <div>
-                        <label className="sub-title" htmlFor="price">Valor do atendimento:</label>
-                        <input 
-                            className="type-short" 
-                            type="text" 
-                            id="price" 
-                            name="price"
-                            required
-                            value={formData.price}
-                            onChange={handleChange}
-                        />
+                        {/* Aqui deve ter algo pra substituir o que tinha antes (valor), tipo datas disponíveis, contendo dia e horário*/}
                         <br />
-                        <label className="sub-title" htmlFor="local">Local:</label>
-                        <input 
-                            className="type-large" 
-                            type="text" 
-                            id="local" 
-                            name="local"
-                            required
-                            value={formData.local}
-                            onChange={handleChange} 
-                        />
+                        {/* MARK: Provavelmente deve ser removido, já que é totalmente remoto. */}
+                        <label className="sub-title">Região</label>
+                        <input className="type-large" type="text" id="local" name="local" required />
                     </div>
                 </div>
                 {/* Dias de atendimento */}
@@ -386,7 +360,7 @@ const FormMedic = () => {
             </div>
 
             <div className="button-side">
-                <button className="form-button">Enviar</button>
+                <Button type="submit" className="classBtn-prim" buttonText="Enviar" isOutlined={false}/>
             </div>
         </form>
     );
