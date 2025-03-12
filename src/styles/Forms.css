@@ -74,6 +74,19 @@
     margin: 1rem;
 }
 
+.chip-box {
+    display: flex;
+    display: inline-block;
+}
+
+.chip {
+    padding: 0.3rem 1rem;
+    color: #FFF;
+    background-color: #232E9D;
+    border-radius: 0.625rem;
+    margin: 0.2rem;
+}
+
 .type-large:focus,
 .type-short:focus,
 .textarea-form:focus {
@@ -111,9 +124,17 @@
 }
 
 .form-button {
-    width: 16.875rem;
+    width: 15rem;
+    height: auto;
+    border-radius: 0.625rem;
     background-color: #232E9D;
     color: #FFF;
+    padding: 0.5rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.form-button:hover {
+    transform: scale(1.05);
 }
 
 .button-side {
