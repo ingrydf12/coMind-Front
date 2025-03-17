@@ -12,6 +12,7 @@ import Depoimentos from './components/Depoimentos/Depoimentos'
 import MedicPacient from './pages/Forms/MedicPacient'
 import FormMedic from './pages/Forms/FormMedic'
 import FormPacient from './pages/Forms/FormPacient'
+import ProfilePacient from './pages/Profiles/ProfilePacient'
 
 export const router = createBrowserRouter([
   {
@@ -93,6 +94,14 @@ export const router = createBrowserRouter([
         element: (
           <RedirectRoute>
             <FormPacient />
+          </RedirectRoute>
+        )
+      },
+      {
+        path: "/profile-pacient",
+        element: (
+          <RedirectRoute>
+            <ProfilePacient />
           </RedirectRoute>
         )
       }
