@@ -12,7 +12,8 @@ import Depoimentos from './components/Depoimentos/Depoimentos'
 import MedicPacient from './pages/Forms/MedicPacient'
 import FormMedic from './pages/Forms/FormMedic'
 import FormPacient from './pages/Forms/FormPacient'
-import ProfilePacient from './pages/Profiles/ProfilePacient'
+import DoctorProfile from './pages/Profiles/DoctorProfile/DoctorProfile'
+import PacientProfile from './pages/Profiles/PacientProfile/PacientProfile'
 
 export const router = createBrowserRouter([
   {
@@ -98,10 +99,18 @@ export const router = createBrowserRouter([
         )
       },
       {
+        path: "/doctor-profile",
+        element: (
+          <RedirectRoute>
+            <DoctorProfile />
+          </RedirectRoute>
+        )
+      },
+      {
         path: "/profile-pacient",
         element: (
           <RedirectRoute>
-            <ProfilePacient />
+            <PacientProfile />
           </RedirectRoute>
         )
       }
