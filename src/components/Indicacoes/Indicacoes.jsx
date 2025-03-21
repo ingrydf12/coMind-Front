@@ -2,9 +2,9 @@ import './Indicacoes.css';
 
 const Indicacoes = () => {
     return (
-        <div className="Indicacoes">
+        <div className="indicacoes">
             <h1>INDICAÇÕES</h1>
-            <div className="Indicacoes-text">
+            <div className="indicacoes-text">
                 <div className="card1">
                     <h2>ACOLHER ONLINE</h2>
                     <h3>Presencial </h3>

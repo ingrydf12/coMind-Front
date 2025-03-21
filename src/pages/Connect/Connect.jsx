@@ -2,6 +2,7 @@ import "./Connect.css";
 import { useState, React } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/Button/CustomButton";
+import { authenticateUser } from "../../utils/validation";
 
 const Connect = () => {
   const [email, setEmail] = useState("");
