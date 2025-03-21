@@ -13,9 +13,9 @@ const MedicPacient = () => {
     };
 
     const buttonClick = () => {
-        if (selectedBox === "box1") {
+        if (selectedBox === "professionalBox") {
             navigate("/form-medic");
-        } else if (selectedBox === "box2") {
+        } else if (selectedBox === "pacientBox") {
             navigate("/form-pacient");
         }
     };
@@ -25,20 +25,20 @@ const MedicPacient = () => {
             <h1 id="selector-title">Você é médico ou paciente?</h1>
             <div id="selector">
                 <div 
-                    id="box1" 
-                    onClick={() => boxClick("box1")} 
-                    className={`${selectedBox === "box1" ? "box-contrast" : "selector-box"} ${selectedBox === "box2" ? "selector-box-blur" : ""}`}
+                    id="professionalBox" 
+                    onClick={() => boxClick("professionalBox")} 
+                    className={`${selectedBox === "professionalBox" ? "box-contrast" : "selector-box"} ${selectedBox === "pacientBox" ? "selector-box-blur" : ""}`}
                 >
                     <img className="selector-img" src={doctorImage} alt="doctor" />
-                    <h2 className={`${selectedBox === "box1" ? "subtitle-contrast" : "selector-subtitle"}`}>Sou médico</h2>   
+                    <h2 className={`${selectedBox === "professionalBox" ? "subtitle-contrast" : "selector-subtitle"}`}>Sou médico</h2>   
                 </div>
                 <div 
-                    id="box2" 
-                    onClick={() => boxClick("box2")} 
-                    className={`${selectedBox === "box2" ? "box-contrast" : "selector-box"} ${selectedBox === "box1" ? "selector-box-blur" : ""}`}
+                    id="pacientBox" 
+                    onClick={() => boxClick("pacientBox")} 
+                    className={`${selectedBox === "pacientBox" ? "box-contrast" : "selector-box"} ${selectedBox === "professionalBox" ? "selector-box-blur" : ""}`}
                 >
                     <img className="selector-img" src={pacientImage} alt="pacient" />
-                    <h2 className={`${selectedBox === "box2" ? "subtitle-contrast" : "selector-subtitle"}`}>Sou paciente</h2>
+                    <h2 className={`${selectedBox === "pacientBox" ? "subtitle-contrast" : "selector-subtitle"}`}>Sou paciente</h2>
                 </div>
             </div>
             <div id="selector-btn-side">
