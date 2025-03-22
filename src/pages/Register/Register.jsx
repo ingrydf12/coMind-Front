@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/CustomButton";
 import './Register.css';
-import { registerUser } from '../../api/authValidation';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -20,15 +19,19 @@ const Register = () => {
         setError('');
         setSuccessMessage('');
 
-        try {
-            const response = await registerUser(name, email, password);
-            setSuccessMessage(response.message);
-            navigate("/medic-pacient");
-        } catch (err) {
-            setError(err.message);
-        } finally {
+        if (!name || !email || !password) {
+            setError("Preencha todos os campos!");
             setLoading(false);
+            return;
         }
+
+        if (password.length < 6) {
+            setError("A senha deve ter pelo menos 6 caracteres!");
+            setLoading(false);
+            return;
+        }
+
+        navigate("/medic-pacient", { state: { name, email, password } });
     };
 
     return (
@@ -70,7 +73,7 @@ const Register = () => {
                     <Button
                         type="submit"
                         className="register-button"
-                        buttonText={loading ? "Carregando..." : "Criar conta"}
+                        buttonText={loading ? "Carregando..." : "Prosseguir"}
                         isOutlined={false}
                         disabled={loading}
                     />

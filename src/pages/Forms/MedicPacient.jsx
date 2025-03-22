@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "../../styles/MedicPacient.css";
+import "./MedicPacient.css";
 import doctorImage from "../../assets/doctorMedia.png";
 import pacientImage from "../../assets/pacientMedia.png";
 
@@ -14,6 +14,7 @@ const MedicPacient = () => {
 
     const buttonClick = () => {
         if (selectedBox === "professionalBox") {
+            
             navigate("/form-medic");
         } else if (selectedBox === "pacientBox") {
             navigate("/form-pacient");
@@ -44,7 +45,7 @@ const MedicPacient = () => {
             <div id="selector-btn-side">
                 <button 
                     id="btn-selector" 
-                    class={`classBtn-prim ${!selectedBox ? 'btn-disabled' : ''}`}
+                    className={`classBtn-prim ${!selectedBox ? 'btn-disabled' : ''}`}
                     onClick={buttonClick} 
                     disabled={!selectedBox} 
                 >
