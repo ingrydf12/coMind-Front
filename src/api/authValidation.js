@@ -2,11 +2,7 @@ import api from "./api";
 
 const register = async (userData) => {
   try {
-    const response = await api.post("/auth/register", JSON.stringify(userData), {
-      headers: {
-        "Content-Type": "application/json", 
-      },
-    });
+    const response = await api.post("/auth/register", userData);
     return response.data;
   } catch (error) {
     console.error("Erro na requisição de registro:", error.response?.data || error.message);
@@ -16,14 +12,9 @@ const register = async (userData) => {
 
 const login = async (credentials) => {
   try {
-    const response = await api.post("/auth/login", JSON.stringify(credentials), {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
+    const response = await api.post("/auth/login", credentials);
     if (response.data.token) {
-      localStorage.setItem("token", response.data.token);
+      sessionStorage.setItem("token", response.data.token);
     }
     return response.data;
   } catch (error) {
@@ -32,8 +23,13 @@ const login = async (credentials) => {
   }
 };
 
-const logout = () => {
-  localStorage.removeItem("token");
+const logout = async () => {
+  try {
+    await api.post("/auth/logout");
+  } catch (error) {
+    console.error("Erro ao deslogar:", error.response?.data || error.message);
+  }
+  sessionStorage.removeItem("token");
 };
 
 export default { register, login, logout };
