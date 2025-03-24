@@ -1,72 +1,47 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/Forms.css";
 import Button from "../../components/Button/CustomButton";
 
-const LIST_DATA = [
-    { id: "depression", name: "depression", value: "Depressão" },
-    { id: "anxiety", name: "anxiety", value: "Ansiedade"},
-    { id: "phobias", name: "phobias", value: "Fobias"}
-];
 
 const FormPacient = () => {
 
-    const [formData, setFormData] = useState({
-        name: '',
-        gender: '',
-        age: '',
-        objectives: '',
-        medicines: '',
-        medicines_yes: '',
-        complaints: '',
-        historical: '',
-    });
-    
-    const handleChange = (event) => {
-        const {name, value} = event.target
+    const [nome, setNome] = useState("");
+    const [genero, setGenero] = useState("");
+    const [idade, setIdade] = useState("");
+    const [objetivos, setObjetivos] = useState("");
+    const [remedios, setRemedios] = useState("");
+    const [remediosSim, setRemediosSim] = useState("");
+    const [queixas, setQueixas] = useState("");
+    const [historico, setHistorico] = useState("");
 
-        setFormData({
-            ...formData,
-            [name]: value,
-        }); 
-    };
-    
-    const [checkedList, setCheckedList] = useState([]);
+    const navigate = useNavigate();
 
-    const handleSelect = (event) => {
-        const value = event.target.value;
-        const isChecked = event.target.checked;
+    const handleRegister = async (e) => {
+        e.preventDefault();
 
-        if(isChecked) {
-            setCheckedList([...checkedList, value]);
-        } else {
-            const filteredList = checkedList.filter((item) => item !== value);
-            setCheckedList(filteredList);
-        }
-    };
+        const userData = { nome, genero, idade, objetivos, remedios, remediosSim, queixas, historico };
+        console.log("Enviando dados: ", userData);
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log(formData)
-        console.log(checkedList)
-    };
+    }
 
     return(
-        <form className="form-style" onSubmit={handleSubmit}>
+        <form className="form-style" onSubmit={handleRegister}>
             <h1>Preencha com suas informações</h1>
             {/* Informações Pessoais */}
             <div>
                 <div className="personal">
                     <div>
-                        <label className="main-title" htmlFor="name">Nome completo</label>
+                        <label className="main-title" htmlFor="nome">Nome completo</label>
                         <input 
                             className="type-large" 
                             type="text" 
-                            id="name" 
-                            name="name" 
+                            id="nome" 
+                            name="nome" 
                             placeholder="Nome" 
                             required
-                            value={formData.name}
-                            onChange={handleChange}
+                            value={nome}
+                            onChange={(e) => setNome(e.target.value)}
                         />
                     </div>
                 </div>
@@ -76,63 +51,63 @@ const FormPacient = () => {
                         <legend>Gênero</legend>
                         <input 
                             type="radio" 
-                            id="masculine" 
-                            name="gender" 
+                            id="masculino" 
+                            name="genero" 
                             required
                             value="Masculino"
-                            checked={formData.gender === "Masculino"}
-                            onChange={handleChange} 
+                            checked={genero === "Masculino"}
+                            onChange={(e) => setGenero(e.target.value)} 
                         />
-                        <label htmlFor="masculine">Masculino</label>
+                        <label htmlFor="masculino">Masculino</label>
                         <br />
                         <input 
                             type="radio" 
-                            id="feminine" 
-                            name="gender" 
+                            id="feminino" 
+                            name="genero" 
                             required
                             value="Feminino"
-                            checked={formData.gender === "Feminino"}
-                            onChange={handleChange}
+                            checked={genero === "Feminino"}
+                            onChange={(e) => setGenero(e.target.value)}
                         />
-                        <label htmlFor="feminine">Feminino</label>
+                        <label htmlFor="feminino">Feminino</label>
                         <br />
                         <input 
                             type="radio" 
-                            id="not-inform" 
-                            name="gender" 
+                            id="nao-informar" 
+                            name="genero"
                             required
                             value="Prefiro não informar"
-                            checked={formData.gender === "Prefiro não informar"}
-                            onChange={handleChange} 
+                            checked={genero === "Prefiro não informar"}
+                            onChange={(e) => setGenero(e.target.value)} 
                         />
-                        <label htmlFor="not-inform">Prefiro não informar</label>
+                        <label htmlFor="nao-informar">Prefiro não informar</label>
                     </fieldset>
 
                     <div>
-                        <label className="sub-title" htmlFor="age">Idade:</label>
+                        <label className="sub-title" htmlFor="idade">Idade:</label>
                         <input 
                             className="type-short" 
                             type="number" 
-                            id="age" 
-                            name="age" 
+                            id="idade" 
+                            name="idade" 
                             required
-                            value={formData.age}
-                            onChange={handleChange}
+                            value={idade}
+                            onChange={(e) => setIdade(e.target.value)}
                         />
                     </div>
 
                     <div>
-                        <label className="sub-title" htmlFor="objectives">Qual o seu objetivo com a terapia?</label>
+                        <label className="sub-title" htmlFor="objetivos">Qual o seu objetivo com a terapia?</label>
                         <textarea 
                             className="textarea-form" 
-                            id="objectives" 
-                            name="objectives" 
+                            id="objetivos" 
+                            name="objetivos" 
                             placeholder="Escreva sobre o seu objetivo" 
                             rows="5" 
                             cols="30" 
                             required
-                            value={formData.objectives}
-                            onChange={handleChange}
+                            value={objetivos}
+                            onChange={(e) => setObjetivos(e.target.value)}
                         />
                     </div>
                 </div>
@@ -151,98 +126,68 @@ const FormPacient = () => {
                             <legend>Você faz uso de algum medicamento para a saúde mental?</legend>
                             <input 
                                 type="radio" 
-                                id="yes" 
-                                name="medicines" 
+                                id="sim" 
+                                name="remedios" 
                                 required
                                 value="Sim"
-                                checked={formData.medicines === "Sim"}
-                                onChange={handleChange}
+                                checked={remedios === "Sim"}
+                                onChange={(e) => setRemedios(e.target.value)}
                             />
-                            <label htmlFor="yes">Sim</label>
+                            <label htmlFor="sim">Sim</label>
                             <input 
                                 type="radio" 
-                                id="no" 
-                                name="medicines" 
+                                id="nao" 
+                                name="remedios" 
                                 required
                                 value="Não"
-                                checked={formData.medicines === "Não"}
-                                onChange={handleChange}
+                                checked={remedios === "Não"}
+                                onChange={(e) => setRemedios(e.target.value)}
                             />
-                            <label htmlFor="no">Não</label>
+                            <label htmlFor="nao">Não</label>
                         </fieldset>
 
                         <div>
-                            <label className="sub-title" htmlFor="medicines_yes">Se sim, qual?</label>
+                            <label className="sub-title" htmlFor="remediosSim">Se sim, qual?</label>
                             <textarea 
                                 className="textarea-form" 
-                                id="medicines_yes" 
-                                name="medicines_yes" 
-                                placeholder="Escreva um pouco sobre a sua medicação" 
+                                id="remediosSim" 
+                                name="remdiosSim" 
+                                placeholder="Escreva um pouco sobre a sua medicação..." 
                                 rows="5" 
                                 cols="30"
-                                value={formData.medicines_yes}
-                                onChange={handleChange}
+                                value={remediosSim}
+                                onChange={(e) => setRemediosSim(e.target.value)}
                             />
                         </div>
 
                         <div>
-                            <label className="sub-title" htmlFor="complaints">Quais as suas principais queixas?</label>
+                            <label className="sub-title" htmlFor="queixas">Quais as suas principais queixas?</label>
                             <textarea 
                                 className="textarea-form"
-                                id="complaints" 
-                                name="complaints" 
+                                id="queixas" 
+                                name="queixas" 
                                 placeholder="Escreva as suas queixas" 
                                 rows="5" 
                                 cols="30" 
                                 required
-                                value={formData.complaints}
-                                onChange={handleChange}
+                                value={queixas}
+                                onChange={(e) => setQueixas(e.target.value)}
                             />
                         </div>
 
                         <div>
-                            <label className="sub-title" htmlFor="historical">Há histórico de doenças da mente na sua família?</label>
+                            <label className="sub-title" htmlFor="historico">Há histórico de doenças da mente na sua família?</label>
                             <textarea 
                                 className="textarea-form" 
-                                id="historical" 
-                                name="historical" 
+                                id="historico" 
+                                name="historico" 
                                 placeholder="Escreva um pouco sobre" 
                                 rows="5" 
                                 cols="30" 
                                 required
-                                value={formData.historical}
-                                onChange={handleChange}
+                                value={historico}
+                                onChange={(e) => setHistorico(e.target.value)}
                             />
-                        </div>
-
-                        <div>
-                            <fieldset className="fieldset-form">
-                                <legend>Para qual ou quais especialidades você deseja atendimento?</legend>
-                                {LIST_DATA.map((item) => {
-                                    return(
-                                        <div key={item.id}>
-                                            <input
-                                                type="checkbox"
-                                                id={item.id}
-                                                name={item.name}
-                                                value={item.value}
-                                                onChange={handleSelect}
-                                            />
-                                            <label htmlFor={item.id}>{item.value}</label>
-                                        </div>
-                                    );
-                                })}  
-                            </fieldset>
-
-                            <div>
-                                {checkedList.map((item, index) => {
-                                    return(
-                                        <div key={item.id} className="chip-box">
-                                            <p className="chip">{item}</p>
-                                        </div>
-                                    )
-                                })}
-                            </div>
                         </div>
                     </div>
                 </div>
