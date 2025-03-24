@@ -1,14 +1,15 @@
+import React from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import { Navigate } from "react-router-dom";
+
 const RedirectRoute = ({ children }) => {
-    // Criar um context do token para fazer o redirecionamento
-    // Exemplo: 
-    // const {token} = useToken()
+  const { isAuthenticated } = useAuth();
 
-    // if(token){
-    //     return <Navigate to="/" replace />
-    // }
-    // return children
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
 
-    return children
-}
+  return children;
+};
 
-export default RedirectRoute
+export default RedirectRoute;

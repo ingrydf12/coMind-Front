@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "../../styles/Forms.css";
+import React from "react";
+import "./Forms.css"
 import Button from "../../components/Button/CustomButton";
 
 const LIST_DATA = [

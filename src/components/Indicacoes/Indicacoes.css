@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.Indicacoes {
+.indicacoes {
   color: #322D3F;
   background-color: #F8F8F8;
   text-align: center;
@@ -15,13 +15,13 @@
   background-size: cover;
 }
 
-.Indicacoes-text {
+.indicacoes-text {
   display: flex;
   justify-content: center;
   gap: 2rem;
 }
 
-.Indicacoes h1 {
+.indicacoes h1 {
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 2rem;
@@ -58,7 +58,7 @@
 
 
 @media only screen and (max-width: 600px) {
-  .Indicacoes-text {
+  .indicacoes-text {
     flex-direction: column;
   }
 
