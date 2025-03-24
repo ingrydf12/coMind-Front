@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
 
@@ -6,7 +6,15 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
 
-  // Função de login
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      const userData = JSON.parse(atob(token.split(".")[1]));
+      setUserName(userData.name);
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   const login = (token) => {
     const userData = JSON.parse(atob(token.split(".")[1]));
     setUserName(userData.name);
@@ -14,7 +22,6 @@ export const AuthProvider = ({ children }) => {
     sessionStorage.setItem("token", token);
   };
 
-  // Função de logout
   const logout = () => {
     sessionStorage.removeItem("token");
     setIsAuthenticated(false);
