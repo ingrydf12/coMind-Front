@@ -23,6 +23,10 @@
   color: #FFFF8C;
 }
 
+input {
+  font-family: 'League Spartan', system-ui, Helvetica, Arial, sans-serif;
+}
+
 a {
   text-decoration: none;
 }

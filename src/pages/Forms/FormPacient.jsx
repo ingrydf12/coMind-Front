@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/Forms.css"
+import "./Forms.css"
 import Button from "../../components/Button/CustomButton";
 
 const FormPacient = () => {
