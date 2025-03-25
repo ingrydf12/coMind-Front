@@ -77,33 +77,33 @@ export const router = createBrowserRouter([
       {
         path: "/form-medic",
         element: (
-          <RedirectRoute>
+          /*<RedirectRoute>*/
             <FormMedic />
-          </RedirectRoute>
+          /*<RedirectRoute>*/
         ),
       },
       {
         path: "/form-pacient",
         element: (
-          <RedirectRoute>
+          /*<RedirectRoute>*/
             <FormPacient />
-          </RedirectRoute>
+          /*</RedirectRoute>*/
         ),
       },
       {
         path: "/medic-profile",
         element: (
-          <RedirectRoute>
+          /*<RedirectRoute>*/
             <DoctorProfile />
-          </RedirectRoute>
+          /*</RedirectRoute>*/
         )
       },
       {
         path: "/pacient-profile",
         element: (
-          <RedirectRoute>
+          /*<RedirectRoute>*/
             <PacientProfile />
-          </RedirectRoute>
+          /*<RedirectRoute>*/
         )
       },
       {

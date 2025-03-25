@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { completarPaciente } from "../../api/pacienteService";
 import "./Forms.css";
 import Button from "../../components/Button/CustomButton";
 
@@ -9,13 +10,13 @@ function FormPacient(){
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        nomeCompleto: state?.nomeCompleto || "",
-        genero: "",
-        idade: "",
-        principaisQueixas: "",
-        usoDeMedicamentos: "",
-        objetivoDaTerapia: "",
-        historicoFamiliar: ""
+        nomeCompleto: state?.nomeCompleto || '',
+        genero: '',
+        idade: '',
+        principaisQueixas: '',
+        usoDeMedicamentos: '',
+        objetivoDaTerapia: '',
+        historicoFamiliar: ''
     })
 
     const handleChange = async (e) => {
@@ -30,9 +31,9 @@ function FormPacient(){
                 ...formData,
                 idade: new Idade(formData.idade).toString()
             });
-            navigate("/pacient-profile");
+            navigate('/pacient-profile');
         } catch (error) {
-            console.error("Erro ao completar cadastro: ", error);
+            console.error('Erro ao completar cadastro: ', error);
         }
     };
 
@@ -130,7 +131,7 @@ function FormPacient(){
 
             {/* Informações de Atendimento */}
             <div>
-                <h2 className="main-title">Atendimento</h2>
+                <h2 className="main-title">Informações Médicas</h2>
                 <div className="service">
                     <div>
                         <div>
