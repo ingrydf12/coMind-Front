@@ -22,7 +22,7 @@ const Banner = () => {
             Conecte-se agora
           </button>
         </div>
-        <img src="src/assets/homeHeart.svg" alt="homeHeart"></img>
+        <img src="https://raw.githubusercontent.com/ingrydf12/coMind-Front/6eaef495600fc128c99fce84e812f9a8e12fa601/src/assets/homeHeart.svg" alt="homeHeart"></img>
       </div>
     </div>
   );

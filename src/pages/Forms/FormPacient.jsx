@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/Forms.css";
+import "./Forms.css";
 import Button from "../../components/Button/CustomButton";
 
 
@@ -23,7 +23,26 @@ const FormPacient = () => {
         const userData = { nome, genero, idade, objetivos, remedios, remediosSim, queixas, historico };
         console.log("Enviando dados: ", userData);
 
-    }
+        try {
+            await authService.register(userData);
+            setSuccess("Cadastro realizado com sucesso! Redirecionando...");
+
+            setNome("");
+            setGenero("");
+            setIdade("");
+            setObjetivos("");
+            setRemedios("");
+            setRemediosSim("");
+            setQueixas("");
+            setHistorico("");
+
+            setTimeout(() => {
+                navigate("/pacient-profile");
+            }, 2000);
+        } catch (error) {
+            setError(error.response?.data?.error || "Error ao enviar o formulário");
+        }
+    };
 
     return(
         <form className="form-style" onSubmit={handleRegister}>
