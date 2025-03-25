@@ -1,51 +1,43 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "./Forms.css";
 import Button from "../../components/Button/CustomButton";
 
-
-const FormPacient = () => {
-
-    const [nome, setNome] = useState("");
-    const [genero, setGenero] = useState("");
-    const [idade, setIdade] = useState("");
-    const [objetivos, setObjetivos] = useState("");
-    const [remedios, setRemedios] = useState("");
-    const [remediosSim, setRemediosSim] = useState("");
-    const [queixas, setQueixas] = useState("");
-    const [historico, setHistorico] = useState("");
-
+function FormPacient(){
+    const { id } = useParams();
+    const { state } = useLocation();
     const navigate = useNavigate();
 
-    const handleRegister = async (e) => {
+    const [formData, setFormData] = useState({
+        nomeCompleto: state?.nomeCompleto || "",
+        genero: "",
+        idade: "",
+        principaisQueixas: "",
+        usoDeMedicamentos: "",
+        objetivoDaTerapia: "",
+        historicoFamiliar: ""
+    })
+
+    const handleChange = async (e) => {
+        const{ name, value } = e.target;
+        setFormData(prev => ({...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const userData = { nome, genero, idade, objetivos, remedios, remediosSim, queixas, historico };
-        console.log("Enviando dados: ", userData);
-
         try {
-            await authService.register(userData);
-            setSuccess("Cadastro realizado com sucesso! Redirecionando...");
-
-            setNome("");
-            setGenero("");
-            setIdade("");
-            setObjetivos("");
-            setRemedios("");
-            setRemediosSim("");
-            setQueixas("");
-            setHistorico("");
-
-            setTimeout(() => {
-                navigate("/pacient-profile");
-            }, 2000);
+            await completarPaciente(id, {
+                ...formData,
+                idade: new Idade(formData.idade).toString()
+            });
+            navigate("/pacient-profile");
         } catch (error) {
-            setError(error.response?.data?.error || "Error ao enviar o formulário");
+            console.error("Erro ao completar cadastro: ", error);
         }
     };
 
     return(
-        <form className="form-style" onSubmit={handleRegister}>
+        <form className="form-style" onSubmit={handleSubmit}>
             <h1>Preencha com suas informações</h1>
             {/* Informações Pessoais */}
             <div>
@@ -56,11 +48,11 @@ const FormPacient = () => {
                             className="type-large" 
                             type="text" 
                             id="nome" 
-                            name="nome" 
+                            name="nomeCompleto" 
                             placeholder="Nome" 
+                            value={formData.nomeCompleto}
+                            onChange={handleChange}
                             required
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
                         />
                     </div>
                 </div>
@@ -71,11 +63,11 @@ const FormPacient = () => {
                         <input 
                             type="radio" 
                             id="masculino" 
-                            name="genero" 
-                            required
+                            name="genero"
                             value="Masculino"
-                            checked={genero === "Masculino"}
-                            onChange={(e) => setGenero(e.target.value)} 
+                            checked={formData.genero === "Masculino"}
+                            onChange={handleChange}
+                            required 
                         />
                         <label htmlFor="masculino">Masculino</label>
                         <br />
@@ -85,8 +77,8 @@ const FormPacient = () => {
                             name="genero" 
                             required
                             value="Feminino"
-                            checked={genero === "Feminino"}
-                            onChange={(e) => setGenero(e.target.value)}
+                            checked={formData.genero === "Feminino"}
+                            onChange={handleChange}
                         />
                         <label htmlFor="feminino">Feminino</label>
                         <br />
@@ -96,8 +88,8 @@ const FormPacient = () => {
                             name="genero"
                             required
                             value="Prefiro não informar"
-                            checked={genero === "Prefiro não informar"}
-                            onChange={(e) => setGenero(e.target.value)} 
+                            checked={formData.genero === "Prefiro não informar"}
+                            onChange={handleChange} 
                         />
                         <label htmlFor="nao-informar">Prefiro não informar</label>
                     </fieldset>
@@ -108,10 +100,10 @@ const FormPacient = () => {
                             className="type-short" 
                             type="number" 
                             id="idade" 
-                            name="idade" 
+                            name="idade"
+                            value={formData.idade}
+                            onChange={handleChange}
                             required
-                            value={idade}
-                            onChange={(e) => setIdade(e.target.value)}
                         />
                     </div>
 
@@ -120,13 +112,13 @@ const FormPacient = () => {
                         <textarea 
                             className="textarea-form" 
                             id="objetivos" 
-                            name="objetivos" 
+                            name="objetivoDaTerapia" 
                             placeholder="Escreva sobre o seu objetivo" 
                             rows="5" 
                             cols="30" 
                             required
-                            value={objetivos}
-                            onChange={(e) => setObjetivos(e.target.value)}
+                            value={formData.objetivoDaTerapia}
+                            onChange={handleChange}
                         />
                     </div>
                 </div>
@@ -141,56 +133,33 @@ const FormPacient = () => {
                 <h2 className="main-title">Atendimento</h2>
                 <div className="service">
                     <div>
-                        <fieldset className="fieldset-form">
-                            <legend>Você faz uso de algum medicamento para a saúde mental?</legend>
-                            <input 
-                                type="radio" 
-                                id="sim" 
-                                name="remedios" 
-                                required
-                                value="Sim"
-                                checked={remedios === "Sim"}
-                                onChange={(e) => setRemedios(e.target.value)}
-                            />
-                            <label htmlFor="sim">Sim</label>
-                            <input 
-                                type="radio" 
-                                id="nao" 
-                                name="remedios" 
-                                required
-                                value="Não"
-                                checked={remedios === "Não"}
-                                onChange={(e) => setRemedios(e.target.value)}
-                            />
-                            <label htmlFor="nao">Não</label>
-                        </fieldset>
-
                         <div>
-                            <label className="sub-title" htmlFor="remediosSim">Se sim, qual?</label>
+                            <label className="sub-title" htmlFor="usoDeMedicamentos">Você faz uso de algum medicamento para a saúde mental?</label>
                             <textarea 
                                 className="textarea-form" 
-                                id="remediosSim" 
-                                name="remdiosSim" 
+                                id="usoDeMedicamentos" 
+                                name="usoDeMedicamentos" 
                                 placeholder="Escreva um pouco sobre a sua medicação..." 
                                 rows="5" 
                                 cols="30"
-                                value={remediosSim}
-                                onChange={(e) => setRemediosSim(e.target.value)}
+                                value={formData.usoDeMedicamentos}
+                                onChange={handleChange}
+                                required
                             />
                         </div>
 
                         <div>
-                            <label className="sub-title" htmlFor="queixas">Quais as suas principais queixas?</label>
+                            <label className="sub-title" htmlFor="principaisQueixas">Quais as suas principais queixas?</label>
                             <textarea 
                                 className="textarea-form"
-                                id="queixas" 
-                                name="queixas" 
+                                id="principaisQueixas" 
+                                name="principaisQueixas" 
                                 placeholder="Escreva as suas queixas" 
                                 rows="5" 
-                                cols="30" 
+                                cols="30"
+                                value={formData.principaisQueixas}
+                                onChange={handleChange}
                                 required
-                                value={queixas}
-                                onChange={(e) => setQueixas(e.target.value)}
                             />
                         </div>
 
@@ -198,14 +167,14 @@ const FormPacient = () => {
                             <label className="sub-title" htmlFor="historico">Há histórico de doenças da mente na sua família?</label>
                             <textarea 
                                 className="textarea-form" 
-                                id="historico" 
-                                name="historico" 
+                                id="historicoFamiliar" 
+                                name="historicoFamiliar" 
                                 placeholder="Escreva um pouco sobre" 
                                 rows="5" 
-                                cols="30" 
+                                cols="30"
+                                value={formData.historicoFamiliar}
+                                onChange={handleChange}
                                 required
-                                value={historico}
-                                onChange={(e) => setHistorico(e.target.value)}
                             />
                         </div>
                     </div>
@@ -213,7 +182,6 @@ const FormPacient = () => {
 
             </div>
 
-        {/* MARK: - Precisa verificar o submit do formulario de registro */}
             <div className="button-side">
                 <Button type="submit" className="classBtn-prim" buttonText="Enviar" isOutlined={false}/>
             </div>
