@@ -56,16 +56,44 @@ function FormMedic() {
     const handleCheckboxChange = (e) => {
         const { value, checked } = e.target;
         setFormData(prev => {
-            if (checked) {
-            return { ...prev, especialidade: [...prev.especialidade, value], faixaEtaria: [...prev.faixaEtaria, value], diasAtendimento: [...prev.diasAtendimento, value] };
-            } else {
-            return { ...prev, especialidade: prev.especialidade.filter(item => item !== value), faixaEtaria: prev.faixaEtaria.filter(item => item !== value), diasAtendimento: prev.diasAtendimento.filter(item => item !== value) };
+            const updatedData = { ...prev };
+
+            if (LIST_DATA.includes(value)) {
+            updatedData.especialidade = checked
+                ? [...prev.especialidade, value]
+                : prev.especialidade.filter(item => item !== value);
             }
+            else if (['CRIANCAS', 'ADOLESCENTES', 'ADULTOS', 'IDOSOS', 'CASAIS'].includes(value)) {
+            updatedData.faixaEtaria = checked
+                ? [...prev.faixaEtaria, value]
+                : prev.faixaEtaria.filter(item => item !== value);
+            }
+            else if (['DOMINGO', 'SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO'].includes(value)) {
+            updatedData.diasAtendimento = checked
+                ? [...prev.diasAtendimento, value]
+                : prev.diasAtendimento.filter(item => item !== value);
+            }
+
+            return updatedData;
         });
     };
 
+    const handleImage = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        
+        reader.onloadend = () => {
+            setFormData({ ...formData, foto: reader.result });
+        };
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log('Dados enviados: ', formData)
         try {
             await completarProfissional(id, {
                 ...formData,
@@ -113,11 +141,11 @@ function FormMedic() {
                         <label className="main-title" htmlFor="foto">Foto de Perfil (URL)</label>
                         <input
                             className="type-large"
-                            type="text"
+                            type="file"
                             id="foto"
                             name="foto"
-                            value={formData.foto}
-                            onChange={handleChange}
+                            accept="image/*"
+                            onChange={handleImage}
                         />
                     </div>
                 </div>
@@ -201,6 +229,7 @@ function FormMedic() {
                                     <input
                                         type="checkbox"
                                         id={espec}
+                                        name="especialidade"
                                         value={espec}
                                         checked={formData.especialidade.includes(espec)}
                                         onChange={handleCheckboxChange}
@@ -231,6 +260,7 @@ function FormMedic() {
                             <input
                                 type="checkbox"
                                 id={faixa}
+                                name="faixaEtaria"
                                 value={faixa}
                                 checked={formData.faixaEtaria.includes(faixa)}
                                 onChange={handleCheckboxChange}
@@ -273,6 +303,7 @@ function FormMedic() {
                         <input
                             type="checkbox"
                             id={dias}
+                            name="diasAtendimento"
                             value={dias}
                             checked={formData.diasAtendimento.includes(dias)}
                             onChange={handleCheckboxChange}
