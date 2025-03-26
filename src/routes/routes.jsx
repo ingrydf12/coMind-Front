@@ -34,7 +34,9 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: (
+          <LoggedInRedirect>
             <Register />
+          </LoggedInRedirect>
         ),
       },
       {
@@ -71,27 +73,18 @@ export const router = createBrowserRouter([
       },
       {
         path: "/medic-pacient",
-        element: (
-          <RedirectRoute>
-            <MedicPacient />
-          </RedirectRoute>
-        ),
+        element: 
+            <MedicPacient />,
       },
       {
         path: "/form-medic",
-        element: (
-          <RedirectRoute>
-            <FormMedic />
-          </RedirectRoute>
-        ),
+        element: 
+            <FormMedic />,
       },
       {
         path: "/form-pacient",
-        element: (
-          <RedirectRoute>
-            <FormPacient />
-          </RedirectRoute>
-        ),
+        element: 
+            <FormPacient />,
       },
       {
         path: "/empty",

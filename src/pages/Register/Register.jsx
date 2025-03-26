@@ -5,33 +5,16 @@ import './Register.css';
 
 const Register = () => {
     const navigate = useNavigate();
+    const [form, setForm] = useState({ name: '', email: '', senha: '' });
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    const handleRegister = async (event) => {
-        event.preventDefault();
-        setLoading(true);
-        setError('');
-        setSuccessMessage('');
-
-        if (!name || !email || !password) {
-            setError("Preencha todos os campos!");
-            setLoading(false);
+        if (form.senha.length < 6) {
             return;
         }
 
-        if (password.length < 6) {
-            setError("A senha deve ter pelo menos 6 caracteres!");
-            setLoading(false);
-            return;
-        }
-
-        navigate("/medic-pacient", { state: { name, email, password } });
+        navigate('/medic-pacient', { state: form });
     };
 
     return (
@@ -42,45 +25,27 @@ const Register = () => {
             <div className="register-form-container">
             <div className="register-form-box">
                 <h1 className="register-title">Crie sua conta</h1>
-                <form className="register-form" onSubmit={handleRegister}>
+                <form className="register-form" onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <input
-                            type="text"
-                            className="form-input"
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder="Seu nome de usuário"
-                            required
-                        />
+                    <input className="form-input" name="name" placeholder="Seu nome de usuário" onChange={(e) => setForm({ ...form, name: e.target.value })} value={form.name} required />
+
                     </div>
                     <div className="form-group">
-                        <input
-                            type="email"
-                            className="form-input"
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Seu email"
-                            required
-                        />
+                    <input className="form-input" name="email" placeholder="Email" onChange={(e) => setForm({ ...form, email: e.target.value })} value={form.email} required />
+
                     </div>
                     <div className="form-group">
-                        <input
-                            type="password"
-                            className="form-input"
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Senha com mínimo de 6 caracteres"
-                            required
-                        />
+                    <input className="form-input"name="senha" type="password" placeholder="Sua senha com mínimo de 6 caracteres" onChange={(e) => setForm({ ...form, senha: e.target.value })} value={form.senha} required />
+                    
                     </div>
                     <Button
                         type="submit"
                         className="register-button"
-                        buttonText={loading ? "Carregando..." : "Prosseguir"}
+                        buttonText="Prosseguir"
                         isOutlined={false}
-                        disabled={loading}
                     />
                 </form>
 
-                {error && <p className="error-message">{error}</p>}
-                {successMessage && <p className="success-message">{successMessage}</p>}
             </div>
             </div>
         </main>
