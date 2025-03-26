@@ -1,20 +1,38 @@
 import React from "react";
-import "./Header.css"; // Mantenha o CSS antigo
+import "./Header.css";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext"; // Importe o useAuth
+import { useAuth } from "../../contexts/AuthContext";
 
 const Header = () => {
-  const { isAuthenticated, userName, logout } = useAuth(); // Use o contexto
+  const { isAuthenticated, userData, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout(); // Chama a função de logout do contexto
-    navigate("/login"); // Redireciona para a página de login
+    logout();
+    navigate("/login");
   };
 
   const backToHome = () => {
-    navigate("/"); // Redireciona para a página inicial
+    navigate("/");
+  };
+
+  const goToDashboard = () => {
+    if (!userData) return;
+    
+    switch(userData.role) {
+      case 'ADMIN':
+        navigate('/dashboard');
+        break;
+      case 'PROFISSIONAL':
+        navigate('/empty');
+        break;
+      case 'PACIENTE':
+        navigate('/empty');
+        break;
+      default:
+        navigate('/');
+    }
   };
 
   return (
@@ -23,7 +41,7 @@ const Header = () => {
         src="logoCoMind.svg"
         alt="logo"
         onClick={backToHome}
-        style={{ cursor: "pointer" }} // Adiciona um cursor de ponteiro para indicar que é clicável
+        style={{ cursor: "pointer" }}
       />
       <Container>
         <Nav className="mr-auto">
@@ -32,9 +50,9 @@ const Header = () => {
           <Nav.Link>Depoimentos</Nav.Link>
         </Nav>
 
-        {isAuthenticated ? ( // Verifica se o usuário está autenticado
+        {isAuthenticated ? (
           <>
-            <Navbar.Text className="autenticado-btn">Bem-vindo, {userName}</Navbar.Text>
+            <Navbar.Text className="autenticado-btn">Bem-vindo, {userData.nome}</Navbar.Text>
             <Button variant="outline-danger" onClick={handleLogout}>
               Sair
             </Button>
