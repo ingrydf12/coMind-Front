@@ -17,20 +17,35 @@ const Connect = () => {
     e.preventDefault();
     setError("");
     setLoading(true);
-
-    const userData = { email, senha };
-
+  
     try {
-      const response = await authService.login(userData);
-      const tipo = response.tipo;
-
-      login(response.token);
-
-      const route = tipo === "ADMIN" ? "/dashboard" : "/empty";
-      navigate(route);
+      const response = await authService.login({ email, senha });
+      //console.log("Resposta do backend:", response);
+  
+      if (!response?.token) {
+        throw new Error(response?.message || "Token não recebido");
+      }
+  
+      login(response.token, {
+        role: response.tipoUsuario,
+        userData: response.usuario
+      });
+  
+      const redirectPath = {
+        'ADMIN': '/dashboard',
+        'PROFISSIONAL': '/empty',
+        'PACIENTE': '/empty'
+      }[response.tipoUsuario] || '/';
+  
+      navigate(redirectPath);
+  
     } catch (error) {
-      console.error("Erro ao logar:", error);
-      setError("Credenciais inválidas");
+      console.error("Erro no login:", error);
+      setError(
+        error.response?.data?.message || 
+        error.message || 
+        "Credenciais inválidas ou serviço indisponível"
+      );
     } finally {
       setLoading(false);
     }
@@ -45,7 +60,11 @@ const Connect = () => {
     <main className="register-container">
       <div className="register-redirect">
         <h1 id="accent">Ainda não tem uma conta?</h1>
-        <CustomButton isOutlined={false} buttonText="Registrar-se" onClick={redirectRegister}></CustomButton>
+        <CustomButton 
+          isOutlined={false} 
+          buttonText="Registrar-se" 
+          onClick={redirectRegister}
+        />
       </div>
 
       <div className="login-auth">
@@ -57,7 +76,9 @@ const Connect = () => {
                 type="email"
                 id="email"
                 placeholder="Seu email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="form-group">
@@ -65,7 +86,9 @@ const Connect = () => {
                 type="password"
                 id="password"
                 placeholder="Sua senha"
+                value={senha}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
           </div>
