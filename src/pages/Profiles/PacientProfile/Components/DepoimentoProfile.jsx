@@ -1,46 +1,76 @@
 import React, { useState } from "react";
+import { publicarDepoimento } from "../../../../api/depoimentoService";
 import "./DepoimentoProfile.css"
 import Button from "../../../../components/Button/CustomButton"
 
-const DepoimentoProfile = () => {
+function DepoimentoProfile() {
+
+    const [depoimentoData, setDepoimentoData] = useState({
+        nome: 'Anônimo',
+        local: '',
+        texto: ''
+    });
+
+    const handleChange = async (e) => {
+        const{ name, value } = e.target;
+        setDepoimentoData(prev => ({...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Dados enviados: ', depoimentoData);
+        try {
+            await publicarDepoimento({
+                ...depoimentoData,
+        });
+        } catch (error) {
+            console.error('Erro ao enviar o depoimento: ', error);
+        }
+    };
+
     return (
-        <div id="depoimento-profile">
+        <form id="depoimento-profile" onSubmit={handleSubmit}>
             <h1>Deixe um Depoimento</h1>
             <div id="depoimento-pessoal">
                 <div>
-                    <label>Seu nome (opcional)</label>
+                    <label htmlFor="nome">Seu nome (opcional)</label>
                     <input 
                         type="text"
                         id="nome"
                         name="nome"
                         placeholder="Nome"
-                        required
+                        value={depoimentoData.nome}
+                        onChange={handleChange}
                     />
                 </div>
                 <div>
-                    <label>De onde você é?</label>
+                    <label htmlFor="local">De onde você é?</label>
                     <input 
                         type="text"
                         id="local"
                         name="local"
                         placeholder="Localidade"
+                        value={depoimentoData.local}
+                        onChange={handleChange}
                         required
                     />
                 </div>
             </div>
             <div>
-                <label>Diga o que achou sobre a plataforma e suas experiências</label>
+                <label htmlFor="texto">Diga o que achou sobre a plataforma e suas experiências</label>
                 <textarea
                     id="texto"
                     name="texto"
                     placeholder="Seu depoimento..." 
                     rows="5" 
-                    cols="60" 
+                    cols="60"
+                    value={depoimentoData.texto}
+                    onChange={handleChange}
                     required
                 />
             </div>
             <Button type="submit" className="classBtn-prim" buttonText="Enviar" isOutlined={false}/>
-        </div>
+        </form>
     )
 }
 

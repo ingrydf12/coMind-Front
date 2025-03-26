@@ -26,10 +26,10 @@ function FormPacient(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('Dados enviados: ', formData);
         try {
             await completarPaciente(id, {
-                ...formData,
-                idade: new Idade(formData.idade).toString()
+                ...formData,  
             });
             navigate('/pacient-profile');
         } catch (error) {
@@ -165,7 +165,7 @@ function FormPacient(){
                         </div>
 
                         <div>
-                            <label className="sub-title" htmlFor="historico">Há histórico de doenças da mente na sua família?</label>
+                            <label className="sub-title" htmlFor="historicoFamiliar">Há histórico de doenças da mente na sua família?</label>
                             <textarea 
                                 className="textarea-form" 
                                 id="historicoFamiliar" 
