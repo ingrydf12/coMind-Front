@@ -39,14 +39,14 @@ const Connect = () => {
         case "ADMIN":
           navigate("/dashboard");
           break;
-        case "MEDICO":
-          navigate(`/doctor-profile/${userId}`);
+        case "PROFISSIONAL":
+          navigate("/profile");
           break;
         case "PACIENTE":
-          navigate(`/patient-profile/${userId}`);
+          navigate("/profile");
           break;
         default:
-          navigate("/profile");
+          navigate("/");
       }
     } catch (error) {
       console.error("Erro ao logar:", error);
