@@ -12,6 +12,7 @@ import MedicPacient from "../pages/Forms/MedicPacient";
 import FormMedic from "../pages/Forms/FormMedic";
 import FormPacient from "../pages/Forms/FormPacient";
 import Empty from "../pages/Empty/Empty";
+import Agenda from "../pages/Agenda";
 
 export const router = createBrowserRouter([
   {
@@ -93,6 +94,14 @@ export const router = createBrowserRouter([
         element: (
           <RedirectRoute>
             <Empty />
+          </RedirectRoute>
+        ),
+      },
+      {
+        path: "/agenda",
+        element: (
+          <RedirectRoute>
+            <Agenda />
           </RedirectRoute>
         ),
       },
