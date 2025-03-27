@@ -60,7 +60,7 @@ const DoctorProfile = () => {
         </div>
         
         <div className="about-user">
-          <h1>{profile.fullName}</h1>
+          <h1>{profile.fullName || profile.nomeUsario}</h1>
           <h2 className="crp-style">Matrícula Profissional: {profile.crp || "Não informado"}</h2>
           <h3>Sobre: </h3>
           <p>{profile.bio || "Nenhuma descrição fornecida."}</p>
