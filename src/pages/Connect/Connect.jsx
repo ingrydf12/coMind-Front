@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/Button/CustomButton";
 import authService from "../../api/authValidation";
 import { useAuth } from "../../contexts/AuthContext";
+import * as jwt from "jwt-decode";
 import "./Connect.css";
 
 const Connect = () => {
@@ -22,15 +23,34 @@ const Connect = () => {
 
     try {
       const response = await authService.login(userData);
-      const tipo = response.tipo;
+      const token = response.token;
+      
+      const decodedToken = jwt.jwtDecode(token);
+      const userType = decodedToken.tipo || decodedToken.role;
+      const userId = decodedToken.id || decodedToken.sub;
 
-      login(response.token);
+      sessionStorage.setItem("token", token);
+      sessionStorage.setItem("userType", userType);
+      sessionStorage.setItem("userId", userId);
 
-      const route = tipo === "ADMIN" ? "/dashboard" : "/empty";
-      navigate(route);
+      login(token);
+
+      switch(userType) {
+        case "ADMIN":
+          navigate("/dashboard");
+          break;
+        case "MEDICO":
+          navigate(`/doctor-profile/${userId}`);
+          break;
+        case "PACIENTE":
+          navigate(`/patient-profile/${userId}`);
+          break;
+        default:
+          navigate("/profile");
+      }
     } catch (error) {
       console.error("Erro ao logar:", error);
-      setError("Credenciais inválidas");
+      setError(error.response?.data?.message || "Credenciais inválidas");
     } finally {
       setLoading(false);
     }
@@ -45,7 +65,11 @@ const Connect = () => {
     <main className="register-container">
       <div className="register-redirect">
         <h1 id="accent">Ainda não tem uma conta?</h1>
-        <CustomButton isOutlined={false} buttonText="Registrar-se" onClick={redirectRegister}></CustomButton>
+        <CustomButton 
+          isOutlined={false} 
+          buttonText="Registrar-se" 
+          onClick={redirectRegister}
+        />
       </div>
 
       <div className="login-auth">
@@ -57,7 +81,9 @@ const Connect = () => {
                 type="email"
                 id="email"
                 placeholder="Seu email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="form-group">
@@ -65,7 +91,9 @@ const Connect = () => {
                 type="password"
                 id="password"
                 placeholder="Sua senha"
+                value={senha}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
           </div>
