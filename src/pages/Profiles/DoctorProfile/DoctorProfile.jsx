@@ -3,13 +3,23 @@ import "./DoctorProfile.css";
 import ImageTest from "../../../assets/image_profile.png";
 import Button from "react-bootstrap/Button";
 import FormIndicacoes from "../../../components/FormIndicacoes/FormIndicacoes";
+import CardIndicacao from "../../../components/CardIndica/CardIndicacao";
 
 const DoctorProfile = () => {
   return (
     <div className="info-profile">
       <div className="basic-info">
-        <img className="img-style" src={ImageTest} alt="Doctor Image" />
+        <div className="functions-user-container">
+          <img className="profile-image" src={ImageTest} alt="Doctor Image"/>
+          {/* Adicionar botões de gerencimento de sessões / consultas */}
+          <Button className="functions-btn">
+            <a href="/indications">Indicar um grupo</a>
+          </Button>
 
+          <Button className="functions-btn">
+            <a href="/indications">Gerenciar atendimentos</a>
+          </Button>
+        </div>
         <div className="about-user">
           <h1>Dr. House</h1>
           <h2 className="crp-style">Matrícula Profissional: 1234567</h2>{" "}
@@ -27,16 +37,8 @@ const DoctorProfile = () => {
       <hr className="line-style" />
 
       <div className="contact-info">
-        <div className="indications-container">
-          <p>indica:</p>
-          <h2>Abraço Coletivo</h2>
-          <div className="more-info">
-            <p>Lorem ipsum dolor sit amet consectetur...</p>
-            <Button className="btn-style">
-              <a href="../indications">Saiba mais</a>
-            </Button>
-          </div>
-        </div>
+
+        <CardIndicacao />
 
         <div className="specific-info">
           <div className="main-info">
@@ -67,31 +69,31 @@ const DoctorProfile = () => {
               </div>
             </div>
           </div>
-          
+
         </div>
         <aside>
-            <div className="disponibility-container">
-              <div>
-                <h3>Disponibilidade</h3>
-              </div>
+          <div className="disponibility-container">
+            <div>
+              <h3>Disponibilidade</h3>
+            </div>
 
-              <div className="days-hours-disponibility">
-                <div className="days-hours-item">
-                  <p>Dias disponíveis</p>
-                  <ul>
-                    <li>seg-sáb</li>
-                  </ul>
-                </div>
-                <div className="days-hours-item">
-                  <p>Horários</p>
-                  <ul>
-                    <li>08:00 - 12:00</li>
-                    <li>15:00 - 19:00</li>
-                  </ul>
-                </div>
+            <div className="days-hours-disponibility">
+              <div className="days-hours-item">
+                <p><strong>Dias disponíveis</strong></p>
+                <ul>
+                  <li>Seg-Sáb</li>
+                </ul>
+              </div>
+              <div className="days-hours-item">
+                <p><strong>Horários</strong></p>
+                <ul>
+                  <li>08:00 - 12:00</li>
+                  <li>15:00 - 19:00</li>
+                </ul>
               </div>
             </div>
-          </aside>
+          </div>
+        </aside>
       </div>
     </div>
   );
