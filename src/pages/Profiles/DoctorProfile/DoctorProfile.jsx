@@ -2,7 +2,7 @@ import React from "react";
 import "./DoctorProfile.css";
 import ImageTest from "../../../assets/image_profile.png";
 import Button from "react-bootstrap/Button";
-import FormIndicacoes from "../../../components/FormIndicacoes/FormIndicacoes";
+import ModalFormIndicacoes from "../../../components/FormIndicacoes/FormIndicacoes";
 import CardIndicacao from "../../../components/CardIndica/CardIndicacao";
 
 const DoctorProfile = () => {
@@ -12,13 +12,17 @@ const DoctorProfile = () => {
         <div className="functions-user-container">
           <img className="profile-image" src={ImageTest} alt="Doctor Image"/>
           {/* Adicionar botões de gerencimento de sessões / consultas */}
-          <Button className="functions-btn">
-            <a href="/indications">Indicar um grupo</a>
-          </Button>
+          {/* <Button className="functions-btn">
+          <ModalFormIndicacoes />
+            <span onClick={() => {handleShow}}>Indicar um grupo</span>
+        </Button> */}
 
           <Button className="functions-btn">
             <a href="/indications">Gerenciar atendimentos</a>
           </Button>
+
+          <CardIndicacao />
+
         </div>
         <div className="about-user">
           <h1>Dr. House</h1>
@@ -37,9 +41,6 @@ const DoctorProfile = () => {
       <hr className="line-style" />
 
       <div className="contact-info">
-
-        <CardIndicacao />
-
         <div className="specific-info">
           <div className="main-info">
             <div className="atendimentos-container">
