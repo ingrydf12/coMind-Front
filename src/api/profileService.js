@@ -3,7 +3,12 @@ import api from './api';
 const profileService = {
   getProfile: async () => {
     try {
-      const response = await api.get("/perfil");
+      const token = sessionStorage.getItem("token");
+      const response = await api.get("/perfil", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar perfil:", error);
@@ -13,7 +18,12 @@ const profileService = {
 
   updateProfile: async (profileData) => {
     try {
-      const response = await api.put("/perfil", profileData);
+      const token = sessionStorage.getItem("token");
+      const response = await api.put("/perfil", profileData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       return response.data;
     } catch (error) {
       console.error("Erro ao atualizar perfil:", error);
