@@ -30,17 +30,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: (
-            <Register />
-        ),
-      },
-      {
-        path: "dashboard",
-        element: (
-          <RedirectRoute>
-            <Dashboard />
-          </RedirectRoute>
-        ),
+        element: <Register />,
       },
       {
         path: "/about",
@@ -76,35 +66,28 @@ export const router = createBrowserRouter([
       },
       {
         path: "/form-medic",
+        element: <FormMedic />,
+      },
+      {
+        path: "/profile",
         element: (
-          /*<RedirectRoute>*/
-            <FormMedic />
-          /*<RedirectRoute>*/
+          <RedirectRoute>
+            {
+              sessionStorage.getItem("userType") === "PROFISSIONAL" 
+              ? <DoctorProfile /> 
+              : <PacientProfile />
+            }
+          </RedirectRoute>
         ),
-      },
+      }
+      ,
       {
-        path: "/form-pacient",
+        path: "/dashboard",
         element: (
-          /*<RedirectRoute>*/
-            <FormPacient />
-          /*</RedirectRoute>*/
+          <RedirectRoute>
+            <Dashboard />
+          </RedirectRoute>
         ),
-      },
-      {
-        path: "/medic-profile",
-        element: (
-          /*<RedirectRoute>*/
-            <DoctorProfile />
-          /*</RedirectRoute>*/
-        )
-      },
-      {
-        path: "/pacient-profile",
-        element: (
-          /*<RedirectRoute>*/
-            <PacientProfile />
-          /*<RedirectRoute>*/
-        )
       },
       {
         path: "/empty",

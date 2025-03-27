@@ -1,40 +1,69 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./DoctorProfile.css";
-import ImageTest from "../../../assets/image_profile.png";
+import defaultProfileImage from "../../../assets/image_profile.png";
 import Button from "react-bootstrap/Button";
 import ModalFormIndicacoes from "../../../components/FormIndicacoes/FormIndicacoes";
 import CardIndicacao from "../../../components/CardIndica/CardIndicacao";
+import profileService from "../../../api/profileService"
 
 const DoctorProfile = () => {
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const profileData = await profileService.getProfile();
+        setProfile(profileData);
+      } catch (err) {
+        setError(err.message || "Erro ao carregar perfil");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProfile();
+  }, []);
+
+  if (loading) return <div className="loading-message">Carregando perfil...</div>;
+  if (error) return <div className="error-message">Erro: {error}</div>;
+  if (!profile) return <div>Nenhum dado de perfil encontrado</div>;
+
+  // Função para formatar os dias de atendimento
+  const formatAvailableDays = (days) => {
+    if (!days || days.length === 0) return "Não informado";
+    return days.join(", ");
+  };
+
+  // Função para formatar os horários
+  const formatAvailableHours = (hours) => {
+    if (!hours || hours.length === 0) return "Não informado";
+    return hours.join(" | ");
+  };
+
   return (
     <div className="info-profile">
       <div className="basic-info">
         <div className="functions-user-container">
-          <img className="profile-image" src={ImageTest} alt="Doctor Image"/>
-          {/* Adicionar botões de gerencimento de sessões / consultas */}
-          {/* <Button className="functions-btn">
-          <ModalFormIndicacoes />
-            <span onClick={() => {handleShow}}>Indicar um grupo</span>
-        </Button> */}
+          <img 
+            className="profile-image" 
+            src={profile.photoUrl || defaultProfileImage} 
+            alt="Doctor"
+          />
 
           <Button className="functions-btn">
             <a href="/indications">Gerenciar atendimentos</a>
           </Button>
 
           <CardIndicacao />
-
         </div>
+        
         <div className="about-user">
-          <h1>Dr. House</h1>
-          <h2 className="crp-style">Matrícula Profissional: 1234567</h2>{" "}
-          {/*Stephany: aqui ficaria concatenado com a numeração do CRP do usuario que está armazenada no banco de dados */}
+          <h1>{profile.fullName}</h1>
+          <h2 className="crp-style">Matrícula Profissional: {profile.crp || "Não informado"}</h2>
           <h3>Sobre: </h3>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut
-            explicabo eveniet similique, unde vitae doloribus deleniti tempora
-            perferendis asperiores hic alias quidem maxime saepe nostrum
-            debitis? Quam quo modi perferendis.
-          </p>
+          <p>{profile.bio || "Nenhuma descrição fornecida."}</p>
         </div>
       </div>
 
@@ -48,9 +77,13 @@ const DoctorProfile = () => {
                 <h3>Atende:</h3>
               </div>
               <ul>
-                <li>Adultos</li>
-                <li>Crianças</li>
-                <li>Idosos</li>
+                {profile.targetGroups && profile.targetGroups.length > 0 ? (
+                  profile.targetGroups.map((group, index) => (
+                    <li key={index}>{group}</li>
+                  ))
+                ) : (
+                  <li>Não informado</li>
+                )}
               </ul>
             </div>
 
@@ -58,20 +91,32 @@ const DoctorProfile = () => {
               <div className="region-container">
                 <h3>Região</h3>
                 <ul>
-                  <li>Taiba/Pecém</li>
+                  {profile.regions && profile.regions.length > 0 ? (
+                    profile.regions.map((region, index) => (
+                      <li key={index}>{region}</li>
+                    ))
+                  ) : (
+                    <li>Não informado</li>
+                  )}
                 </ul>
               </div>
 
               <div className="specialty-container">
                 <h3>Especialidade</h3>
                 <ul>
-                  <li>Ansiedade</li>
+                  {profile.specialties && profile.specialties.length > 0 ? (
+                    profile.specialties.map((specialty, index) => (
+                      <li key={index}>{specialty}</li>
+                    ))
+                  ) : (
+                    <li>Não informado</li>
+                  )}
                 </ul>
               </div>
             </div>
           </div>
-
         </div>
+        
         <aside>
           <div className="disponibility-container">
             <div>
@@ -82,14 +127,13 @@ const DoctorProfile = () => {
               <div className="days-hours-item">
                 <p><strong>Dias disponíveis</strong></p>
                 <ul>
-                  <li>Seg-Sáb</li>
+                  <li>{formatAvailableDays(profile.availableDays)}</li>
                 </ul>
               </div>
               <div className="days-hours-item">
                 <p><strong>Horários</strong></p>
                 <ul>
-                  <li>08:00 - 12:00</li>
-                  <li>15:00 - 19:00</li>
+                  <li>{formatAvailableHours(profile.availableHours)}</li>
                 </ul>
               </div>
             </div>
