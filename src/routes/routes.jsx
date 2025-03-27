@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import RedirectRoute from "../components/RedirectRoute/RedirectRoute";
-import LoggedInRedirect from "../contexts/LoggedInReplace";
 import Register from "../pages/Register/Register";
 import Layout from "../components/Layout/Layout";
 import Connect from "../pages/Connect/Connect";
@@ -25,11 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: (
-        <LoggedInRedirect>
-          <Connect />
-        </LoggedInRedirect>
-        ),
+        element: <Connect />,
       },
       {
         path: "register",
