@@ -12,6 +12,7 @@ import MedicPacient from "../pages/Forms/MedicPacient";
 import FormMedic from "../pages/Forms/FormMedic";
 import FormPacient from "../pages/Forms/FormPacient";
 import Empty from "../pages/Empty/Empty";
+import ProfileRoute from "../routes/profileRouter";
 
 export const router = createBrowserRouter([
   {
@@ -28,17 +29,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: (
-            <Register />
-        ),
-      },
-      {
-        path: "dashboard",
-        element: (
-          <RedirectRoute>
-            <Dashboard />
-          </RedirectRoute>
-        ),
+        element: <Register />,
       },
       {
         path: "/about",
@@ -74,17 +65,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "/form-medic",
-        element: (
-          <RedirectRoute>
-            <FormMedic />
-          </RedirectRoute>
-        ),
+        element: <FormMedic />,
       },
       {
-        path: "/form-pacient",
+        path: "/profile",
+        element: <ProfileRoute />,
+      },
+      {
+        path: "/dashboard",
         element: (
           <RedirectRoute>
-            <FormPacient />
+            <Dashboard />
           </RedirectRoute>
         ),
       },

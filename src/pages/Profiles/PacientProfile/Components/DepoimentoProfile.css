@@ -1,0 +1,35 @@
+#depoimento-profile {
+    padding: 2rem;
+    color: #000;
+    background-color: #FFF;
+}
+
+#depoimento-profile h1 {
+    display: block;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+#depoimento-profile label {
+    display: block;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+#depoimento-profile input, textarea {
+    border-radius: 0.625rem;
+    border: 1px solid #232E9D;
+    background: #FFF;
+    color: #000;
+    padding: 0.5rem;
+    margin: 1rem;
+}
+
+#depoimento-profile input {
+    width: 22rem;
+    height: 2rem;
+}
+
+#depoimento-pessoal {
+    display: flex;
+}

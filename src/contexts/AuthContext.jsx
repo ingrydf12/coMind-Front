@@ -6,13 +6,20 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
 
-  useEffect(() => {
+  const updateAuthStatus = () => {
     const token = sessionStorage.getItem("token");
     if (token) {
       const userData = JSON.parse(atob(token.split(".")[1]));
       setUserName(userData.name);
       setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+      setUserName("");
     }
+  };
+
+  useEffect(() => {
+    updateAuthStatus();
   }, []);
 
   const login = (token) => {
@@ -24,8 +31,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     sessionStorage.removeItem("token");
-    setIsAuthenticated(false);
-    setUserName("");
+    updateAuthStatus();
   };
 
   return (

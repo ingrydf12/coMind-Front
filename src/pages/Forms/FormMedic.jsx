@@ -1,82 +1,110 @@
-import React from "react";
-import "./Forms.css"
+import React, { useState } from "react";
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { completarProfissional } from "../../api/medicService";
+import "./Forms.css";
 import Button from "../../components/Button/CustomButton";
 
 const LIST_DATA = [
-    { id: "depression", name: "depression", value: "Depressão" },
-    { id: "anxiety", name: "anxiety", value: "Ansiedade"},
-    { id: "phobias", name: "phobias", value: "Fobias"}
+    'ANSIEDADE',
+    'DEPRESSAO',
+    'FOBIAS',
+    'AUTOCONHECIMENTO',
+    'AUTOESTIMA',
+    'BORDERLINE',
+    'BULIMIA',
+    'CANCER',
+    'TRANSTORNOS',
+    'COMPULSOES',
+    'DISLEXIA',
+    'DISTURBIOS',
+    'DROGAS',
+    'ESQUIZOFRENIA',
+    'ESTRESSA',
+    'HIPERATIVIDADE',
+    'HIPOCONDRIA',
+    'OBESIDADE',
+    'BURNOUT',
+    'SEXUALIDADE',
+    'SUICIDIO'
 ];
 
-const FormMedic = () => {
+function FormMedic() {
+    const { id } = useParams();
+    const{ state } = useLocation();
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        name: '',
-        registration: '',
-        gender: '',
-        aboutyou: '',
-        formation: '',
-        price: '',
-        local: '',
-        free: '',
-        howmany: '',
-
-        child: false,
-        teen: false,
-        adult: false,
-        old: false,
-        couple: false,
-
-        sun: false,
-        mon: false,
-        tue: false,
-        wed: false,
-        thu: false,
-        fri: false,
-        sat: false
+        nomeCompleto: state?.nomeCompleto || '',
+        matricula: '',
+        genero: '',
+        bio: '',
+        formacoes: '',
+        especialidade: [],
+        faixaEtaria: [],
+        preco: 0,
+        regiao: '',
+        foto: '',
+        diasAtendimento: [],
+        quantAtendimentosGratuitos: 0
     })
 
-    const handleChange = (event) => {
-        const {name, value, checked} = event.target
-
-        setFormData({
-            ...formData,
-            [name]: value,
-
-            child: name === "child" ? checked : formData.child,
-            teen: name === "teen" ? checked : formData.teen,
-            adult: name === "adult" ? checked : formData.adult,
-            old: name === "old" ? checked : formData.old,
-            couple: name === "couple" ? checked : formData.couple,
-            
-            sun: name === "sun" ? checked : formData.sun,
-            mon: name === "mon" ? checked : formData.mon,
-            tue: name === "tue" ? checked : formData.tue,
-            wed: name === "wed" ? checked : formData.wed,
-            thu: name === "thu" ? checked : formData.thu,
-            fri: name === "fri" ? checked : formData.fri,
-            sat: name === "sat" ? checked : formData.sat
-        })
-    }
-
-    const [checkedList, setCheckedList] = useState([]);
-    
-    const handleSelect = (event) => {
-        const value = event.target.value;
-        const isChecked = event.target.checked;
-
-        if(isChecked) {
-            setCheckedList([...checkedList, value]);
-        } else {
-            const filteredList = checkedList.filter((item) => item !== value);
-            setCheckedList(filteredList);
-        }
+    const handleChange = (e) => {
+        const {name, value} = e.target
+        setFormData(prev => ({ ...prev, [name]:value}));
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log(formData)
+    const handleCheckboxChange = (e) => {
+        const { value, checked } = e.target;
+        setFormData(prev => {
+            const updatedData = { ...prev };
+
+            if (LIST_DATA.includes(value)) {
+            updatedData.especialidade = checked
+                ? [...prev.especialidade, value]
+                : prev.especialidade.filter(item => item !== value);
+            }
+            else if (['CRIANCAS', 'ADOLESCENTES', 'ADULTOS', 'IDOSOS', 'CASAIS'].includes(value)) {
+            updatedData.faixaEtaria = checked
+                ? [...prev.faixaEtaria, value]
+                : prev.faixaEtaria.filter(item => item !== value);
+            }
+            else if (['DOMINGO', 'SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO'].includes(value)) {
+            updatedData.diasAtendimento = checked
+                ? [...prev.diasAtendimento, value]
+                : prev.diasAtendimento.filter(item => item !== value);
+            }
+
+            return updatedData;
+        });
+    };
+
+    const handleImage = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        
+        reader.onloadend = () => {
+            setFormData({ ...formData, foto: reader.result });
+        };
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        }
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log('Dados enviados: ', formData)
+        try {
+            await completarProfissional(id, {
+                ...formData,
+                quantAtendimentosGratuitos: parseInt(formData.quantAtendimentosGratuitos),
+                preco: parseFloat(formData.preco)
+            });
+            navigate('/medic-profile');
+        } catch (error) {
+            console.error('Erro ao completar cadastro: ', error)
+        }
+    };
 
     return(
         <form className="form-style" onSubmit={handleSubmit}>
@@ -84,22 +112,41 @@ const FormMedic = () => {
             <div>
                 <div className="personal">
                     <div>
-                        <label className="main-title" htmlFor="name">Nome completo</label>
+                        <label className="main-title" htmlFor="nomeCompleto">Nome completo</label>
                         <input 
                             className="type-large" 
                             type="text" 
-                            id="name" 
-                            name="name" 
-                            placeholder="Nome" 
-                            required
-                            value={formData.name}
+                            id="nomeCompleto" 
+                            name="nomeCompleto" 
+                            placeholder="Nome"
+                            value={formData.nomeCompleto}
                             onChange={handleChange}
+                            required
                         />
                     </div>
-
                     <div>
-                        <label className="main-title" htmlFor="registration">Matrícula Profissional</label>
-                        <input className="type-large" type="text" id="registration" name="registration" required placeholder="Exemplo: CRP"/>
+                        <label className="main-title" htmlFor="matricula">Matrícula Profissional</label>
+                        <input 
+                            className="type-large" 
+                            type="text" 
+                            id="matricula" 
+                            name="matricula"
+                            value={formData.matricula}
+                            onChange={handleChange}
+                            placeholder="Exemplo: CRP"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="main-title" htmlFor="foto">Foto de Perfil (URL)</label>
+                        <input
+                            className="type-large"
+                            type="file"
+                            id="foto"
+                            name="foto"
+                            accept="image/*"
+                            onChange={handleImage}
+                        />
                     </div>
                 </div>
 
@@ -108,48 +155,47 @@ const FormMedic = () => {
                         <legend>Gênero</legend>
                         <input 
                             type="radio" 
-                            id="masculine" 
-                            name="gender" 
-                            required
+                            id="masculino" 
+                            name="genero"
                             value="Masculino"
-                            checked={formData.gender === "Masculino"}
-                            onChange={handleChange} 
-                        />
-                        <label htmlFor="masculine">Masculino</label>
-                        <br />
-                        <input 
-                            type="radio" 
-                            id="feminine" 
-                            name="gender" 
-                            required
-                            value="Feminino"
-                            checked={formData.gender === "Feminino"}
+                            checked={formData.genero === "Masculino"}
                             onChange={handleChange}
+                            required 
                         />
-                        <label htmlFor="feminine">Feminino</label>
+                        <label htmlFor="masculino">Masculino</label>
                         <br />
                         <input 
                             type="radio" 
-                            id="not-inform" 
-                            name="gender" 
+                            id="feminino" 
+                            name="genero"
+                            value="Feminino"
+                            checked={formData.genero === "Feminino"}
+                            onChange={handleChange}
                             required
-                            value="Prefiro não informar"
-                            checked={formData.gender === "Prefiro não informar"}
-                            onChange={handleChange} 
                         />
-                        <label htmlFor="not-inform">Prefiro não informar</label>
+                        <label htmlFor="feminino">Feminino</label>
+                        <br />
+                        <input 
+                            type="radio" 
+                            id="nao-informar" 
+                            name="genero"
+                            value="Prefiro não informar"
+                            checked={formData.genero === "Prefiro não informar"}
+                            onChange={handleChange}
+                            required 
+                        />
+                        <label htmlFor="nao-informar">Prefiro não informar</label>
                     </fieldset>
-
                     <textarea 
                         className="textarea-form" 
-                        id="aboutyou" 
-                        name="aboutyou" 
+                        id="bio" 
+                        name="bio" 
                         placeholder="Escreva sobre você" 
                         rows="5" 
-                        cols="30" 
-                        required
-                        value={formData.aboutyou}
+                        cols="30"
+                        value={formData.bio}
                         onChange={handleChange}
+                        required
                     />
                 </div>
             </div>
@@ -160,48 +206,41 @@ const FormMedic = () => {
 
             <div className="formation-courses">
                 <div>
-                    <label className="main-title" htmlFor="formation">Formações e Cursos</label>
+                    <label className="main-title" htmlFor="formacoes">Formações e Cursos</label>
                     <textarea 
                         className="textarea-form" 
-                        id="formation" 
-                        name="formation" 
+                        id="formacoes" 
+                        name="formacoes" 
                         placeholder="Digite aqui sobre sua formação" 
                         rows="5" 
-                        cols="30" 
-                        required
-                        value={formData.formation}
+                        cols="30"
+                        value={formData.formacoes}
                         onChange={handleChange}
+                        required
                     />
                 </div>
                 
                 <div>
                     <fieldset className="fieldset-form">
                         <legend>Qual ou quais as suas especialidades?</legend>
-                        {LIST_DATA.map((item) => {
+                        {LIST_DATA.map((espec) => {
                             return(
-                                <div key={item.id}>
+                                <div key={espec}>
                                     <input
                                         type="checkbox"
-                                        id={item.id}
-                                        name={item.name}
-                                        value={item.value}
-                                        onChange={handleSelect}
+                                        id={espec}
+                                        name="especialidade"
+                                        value={espec}
+                                        checked={formData.especialidade.includes(espec)}
+                                        onChange={handleCheckboxChange}
                                     />
-                                    <label htmlFor={item.id}>{item.value}</label>
+                                    <label htmlFor={espec}>
+                                        {espec.charAt(0) + espec.slice(1).toLowerCase()}
+                                    </label>
                                 </div>
                             );
                         })}
                     </fieldset>
-
-                    <div>
-                        {checkedList.map((item, index) => {
-                            return(
-                                <div key={item.id} className="chip-box">
-                                    <p className="chip">{item}</p>
-                                </div>
-                            )
-                        })}
-                    </div>
                 </div>
             </div>
 
@@ -216,144 +255,78 @@ const FormMedic = () => {
                     {/* Público */}
                     <fieldset className="fieldset-form">
                         <legend>Faixa etária:</legend>
-                        
-                        <input type="checkbox" id="child" name="child" checked={formData.child} onChange={handleChange} />
-                        <label htmlFor="child">Crianças</label>
-                        <br />
-
-                        <input type="checkbox" id="teen" name="teen" checked={formData.teen} onChange={handleChange} />
-                        <label htmlFor="teen">Adolescentes</label>
-                        <br />
-
-                        <input type="checkbox" id="adult" name="adult" checked={formData.adult} onChange={handleChange} />
-                        <label htmlFor="adult">Adultos</label>
-                        <br />
-
-                        <input type="checkbox" id="old" name="old" checked={formData.old} onChange={handleChange} />
-                        <label htmlFor="old">Idosos</label>
-                        <br />
-
-                        <input type="checkbox" id="couple" name="couple" checked={formData.couple} onChange={handleChange} />
-                        <label htmlFor="couple">Casais</label>
+                        {['CRIANCAS', 'ADOLESCENTES', 'ADULTOS', 'IDOSOS', 'CASAIS'].map(faixa => (
+                           <div key={faixa}>
+                            <input
+                                type="checkbox"
+                                id={faixa}
+                                name="faixaEtaria"
+                                value={faixa}
+                                checked={formData.faixaEtaria.includes(faixa)}
+                                onChange={handleCheckboxChange}
+                            />
+                            <label htmlFor={faixa}>
+                                {faixa.charAt(0) + faixa.slice(1).toLowerCase()}
+                            </label>      
+                           </div> 
+                        ))}
                     </fieldset>
 
                     <div>
-                        {/* Aqui deve ter algo pra substituir o que tinha antes (valor), tipo datas disponíveis, contendo dia e horário*/}
-                        <br />
-                        {/* MARK: Provavelmente deve ser removido, já que é totalmente remoto. */}
-                        <label className="sub-title">Região</label>
-                        <input className="type-large" type="text" id="local" name="local" required />
+                        <label className="sub-title" htmlFor="preco">Valor da consulta</label>
+                        <input
+                            className="type-short" 
+                            type="number" 
+                            id="preco" 
+                            name="preco"
+                            value={formData.preco}
+                            onChange={handleChange}
+                            required
+                        />
+                        
+                        <label className="sub-title" htmlFor="regiao">Região</label>
+                        <input 
+                            className="type-large" 
+                            type="text" 
+                            id="regiao" 
+                            name="regiao"
+                            value={formData.regiao}
+                            onChange={handleChange} 
+                            required />
                     </div>
                 </div>
                 {/* Dias de atendimento */}
                 <fieldset className="fieldset-form">
                     <legend>Dias de atendimento</legend>
-
-                    <input 
-                        type="checkbox" 
-                        id="sun" 
-                        name="sun"
-                        checked={formData.sun}
-                        onChange={handleChange}
-                    />
-                    <label htmlFor="sun">Domingo</label>
-                    <br />
-
-                    <input 
-                        type="checkbox" 
-                        id="mon" 
-                        name="mon"
-                        checked={formData.mon}
-                        onChange={handleChange} 
-                    />
-                    <label htmlFor="mon">Segunda-feira</label>
-                    <br />
-
-                    <input 
-                        type="checkbox" 
-                        id="tue" 
-                        name="tue"
-                        checked={formData.tue}
-                        onChange={handleChange} 
-                    />
-                    <label htmlFor="tue">Terça-feira</label>
-                    <br />
-
-                    <input  
-                        type="checkbox"  
-                        id="wed" 
-                        name="wed"
-                        checked={formData.wed}
-                        onChange={handleChange} 
-                    />
-                    <label htmlFor="wed">Quarta-feira</label>
-                    <br />
-
-                    <input 
-                        type="checkbox" 
-                        id="thu" 
-                        name="thu"
-                        checked={formData.thu}
-                        onChange={handleChange}
-                    />
-                    <label htmlFor="thu">Quinta-feira</label>
-                    <br />
-
-                    <input 
-                        type="checkbox" 
-                        id="fri" 
-                        name="fri"
-                        checked={formData.fri}
-                        onChange={handleChange} 
-                    />
-                    <label htmlFor="fri">Sexta-feira</label>
-                    <br />
-
-                    <input 
-                        type="checkbox" 
-                        id="sat" 
-                        name="sat"
-                        checked={formData.sat}
-                        onChange={handleChange} 
-                    />
-                    <label htmlFor="sat">Sábado</label>
+                    {['DOMINGO', 'SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO'].map(dias => (
+                        <div key={dias}>
+                        <input
+                            type="checkbox"
+                            id={dias}
+                            name="diasAtendimento"
+                            value={dias}
+                            checked={formData.diasAtendimento.includes(dias)}
+                            onChange={handleCheckboxChange}
+                        />
+                        <label htmlFor={dias}>
+                            {dias.charAt(0) + dias.slice(1).toLowerCase()}
+                        </label>      
+                        </div> 
+                    ))}  
                 </fieldset>
 
                 <div className="free-service">
-                    <fieldset className="fieldset-form">
-                        <legend>Pretende fazer atendimentos gratuitos?</legend>
-                        <input 
-                            type="radio" 
-                            id="yes" 
-                            name="free" 
-                            required
-                            value="Sim"
-                            checked={formData.free === "Sim"}
-                            onChange={handleChange} 
-                        />
-                        <label htmlFor="yes">Sim</label>
-                        <input 
-                            type="radio" 
-                            id="no" 
-                            name="free" 
-                            required
-                            value="Não"
-                            checked={formData.free === "Não"}
-                            onChange={handleChange} 
-                        />
-                        <label htmlFor="no">Não</label>
-                    </fieldset>
-
                     <div>
-                        <label className="sub-title" htmlFor="howmany">Se sim, quantos?</label>
+                        <label className="sub-title" htmlFor="quantAtendimentosGratuitos">Quantos atendimentos gratuitos pretende fazer?</label>
                         <input 
                             className="type-short"
                             type="number" 
-                            id="howmany" 
-                            name="howmany" 
+                            id="quantAtendimentosGratuitos" 
+                            name="quantAtendimentosGratuitos" 
                             min="0"
-                            value={formData.howmany}
-                            onChange={handleChange} 
+                            value={formData.quantAtendimentosGratuitos}
+                            onChange={handleChange}
+                            required
                         />
                     </div>
                 </div>
