@@ -55,7 +55,7 @@ function PacientProfile() {
                 Fazer depoimento
               </Button>
 
-              <Button className="functions-btn" variant="secondary">
+              <Button className="functions-btn" variant="primary">
                 <a href="/atendimentos" className="session-link">Ver minhas sessões</a>
               </Button>
             </div>
