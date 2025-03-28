@@ -12,9 +12,8 @@ import MedicPacient from "../pages/Forms/MedicPacient";
 import FormMedic from "../pages/Forms/FormMedic";
 import FormPacient from "../pages/Forms/FormPacient";
 import Empty from "../pages/Empty/Empty";
-import Agenda from "../pages/Agenda";
-import ProfileRoute from "../routes/profileRouter";
 import Agenda from "../pages/Agenda/Agenda";
+import ProfileRoute from "../routes/profileRouter";
 
 export const router = createBrowserRouter([
   {
@@ -63,7 +62,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/form-medic",
-        element: <FormMedic />,
+        element: (
+          <RedirectRoute>
+            <FormMedic />
+          </RedirectRoute>
+        ),
+      },
+      {
+        path: "/form-pacient",
+        element: (
+          <RedirectRoute>
+            <FormPacient />
+          </RedirectRoute>
+        ),
       },
       {
         path: "/profile",
@@ -83,11 +94,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/agenda",
-        element: (
-          
-            <Agenda />
-          
-        ),
+        element: <Agenda />,
       },
       {
         path: "/empty",
