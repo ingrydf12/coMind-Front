@@ -3,7 +3,7 @@ import './Agenda.css';
 const Agenda = () => {
     return(
         <div>
-            <h1>Testando...</h1>
+            <h1>Testando!</h1>
         </div>
     )
 }
