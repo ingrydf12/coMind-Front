@@ -1,77 +1,108 @@
 import React, { useState } from "react";
 import { publicarDepoimento } from "../../../../api/depoimentoService";
-import "./DepoimentoProfile.css"
-import Button from "../../../../components/Button/CustomButton"
+import { Modal, Form } from "react-bootstrap";
+import Button from "../../../../components/Button/CustomButton";
+import "./DepoimentoProfile.css";
 
-function DepoimentoProfile() {
+function DepoimentoProfileModal({ showModal, handleClose }) {
+  const [depoimentoData, setDepoimentoData] = useState({
+    nome: "Anônimo",
+    local: "",
+    texto: ""
+  });
 
-    const [depoimentoData, setDepoimentoData] = useState({
-        nome: 'Anônimo',
-        local: '',
-        texto: ''
-    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDepoimentoData(prev => ({ ...prev, [name]: value }));
+  };
 
-    const handleChange = async (e) => {
-        const{ name, value } = e.target;
-        setDepoimentoData(prev => ({...prev, [name]: value }));
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await publicarDepoimento({ ...depoimentoData });
+      handleClose();
+    } catch (error) {
+      console.error("Erro ao enviar o depoimento: ", error);
+    }
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log('Dados enviados: ', depoimentoData);
-        try {
-            await publicarDepoimento({
-                ...depoimentoData,
-        });
-        } catch (error) {
-            console.error('Erro ao enviar o depoimento: ', error);
-        }
-    };
+  return (
+    <Modal 
+      show={showModal} 
+      onHide={handleClose} 
+      centered
+      size="lg"
+      backdrop="static"
+      keyboard={false}
+      className="custom-modal-overlay"
+      dialogClassName="custom-modal-dialog"
+    >
+      <Modal.Header className="modal-header">
+        <Modal.Title className="modal-title">Deixe um Depoimento</Modal.Title>
+      </Modal.Header>
+      
+      <Modal.Body className="modal-body">
+        <Form onSubmit={handleSubmit} id="depoimento-profile" className="depoimento-form-container">
+          <Form.Group className="form-input-area">
+            <Form.Label htmlFor="nome">Seu nome (opcional)</Form.Label>
+            <Form.Control
+              type="text"
+              id="nome"
+              name="nome"
+              value={depoimentoData.nome}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </Form.Group>
 
-    return (
-        <form id="depoimento-profile" onSubmit={handleSubmit}>
-            <h1>Deixe um Depoimento</h1>
-            <div id="depoimento-pessoal">
-                <div>
-                    <label htmlFor="nome">Seu nome (opcional)</label>
-                    <input 
-                        type="text"
-                        id="nome"
-                        name="nome"
-                        placeholder="Nome"
-                        value={depoimentoData.nome}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="local">De onde você é?</label>
-                    <input 
-                        type="text"
-                        id="local"
-                        name="local"
-                        placeholder="Localidade"
-                        value={depoimentoData.local}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-            </div>
-            <div>
-                <label htmlFor="texto">Diga o que achou sobre a plataforma e suas experiências</label>
-                <textarea
-                    id="texto"
-                    name="texto"
-                    placeholder="Seu depoimento..." 
-                    rows="5" 
-                    cols="60"
-                    value={depoimentoData.texto}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <Button type="submit" className="classBtn-prim" buttonText="Enviar" isOutlined={false}/>
-        </form>
-    )
+          <Form.Group className="form-input-area">
+            <Form.Label htmlFor="local">De onde você é?*</Form.Label>
+            <Form.Control
+              type="text"
+              id="local"
+              name="local"
+              value={depoimentoData.local}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </Form.Group>
+
+          <Form.Group className="form-input-area">
+            <Form.Label htmlFor="texto">
+              Diga o que achou sobre a plataforma e suas experiências*
+            </Form.Label>
+            <Form.Control
+              as="textarea"
+              id="texto"
+              name="texto"
+              rows={5}
+              value={depoimentoData.texto}
+              onChange={handleChange}
+              required
+              className="form-input form-textarea"
+            />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+
+      <Modal.Footer className="modal-footer">
+        <Button 
+          variant="secondary" 
+          onClick={handleClose}
+          buttonText="Cancelar"
+          isOutlined={true}
+          className="me-2"
+        />
+        <Button 
+          type="submit" 
+          form="depoimento-profile"
+          buttonText="Enviar Depoimento" 
+          isOutlined={false}
+        />
+      </Modal.Footer>
+    </Modal>
+  );
 }
 
-export default DepoimentoProfile;
+export default DepoimentoProfileModal;
