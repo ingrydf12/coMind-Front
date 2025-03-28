@@ -30,19 +30,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: (
-          <LoggedInRedirect>
-            <Register />
-          </LoggedInRedirect>
-        ),
-      },
-      {
-        path: "dashboard",
-        element: (
-          <RedirectRoute>
-            <Dashboard />
-          </RedirectRoute>
-        ),
+        element: <Register />,
       },
       {
         path: "/about",
@@ -64,18 +52,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/medic-pacient",
-        element: 
-            <MedicPacient />
+        element: <MedicPacient />,
       },
       {
         path: "/form-medic",
-        element: 
-            <FormMedic />,
+        element: (
+            <FormMedic />
+        ),
       },
       {
         path: "/form-pacient",
-        element: 
-            <FormPacient />,
+        element: (
+            <FormPacient />
+        ),
       },
       {
         path: "/profile",
