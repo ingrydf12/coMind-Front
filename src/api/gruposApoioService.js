@@ -1,80 +1,80 @@
 import api from './api';
 
-const depoimentosService = {
-  listarDepoimentos: async () => {
+const gruposApoioService = {
+  listarGruposApoio: async () => {
     try {
       const token = sessionStorage.getItem("token");
-      const response = await api.get("/depoimentos", {
+      const response = await api.get("/grupos-apoio", {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       return response.data;
     } catch (error) {
-      console.error("Erro ao listar depoimentos:", error);
+      console.error("Erro ao listar grupos de apoio:", error);
       throw error;
     }
   },
 
-  buscarDepoimentosPorId: async (id) => {
+  buscarGruposApoioPorId: async (id) => {
     try {
       const token = sessionStorage.getItem("token");
-      const response = await api.get(`/depoimentos/${id}`, {
+      const response = await api.get(`/grupos-apoio/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       return response.data;
     } catch (error) {
-      console.error("Erro ao buscar depoimento por ID:", error);
+      console.error("Erro ao buscar grupo de apoio por ID:", error);
       throw error;
     }
   },
 
-  criarDepoimentos: async (depoimentosData) => {
+  criarGruposApoio: async (grupoData) => {
     try {
       const token = sessionStorage.getItem("token");
-      const response = await api.post("/depoimentos", depoimentosData, {
+      const response = await api.post("/grupos-apoio", grupoData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       return response.data;
     } catch (error) {
-      console.error("Erro ao criar depoimento:", error);
+      console.error("Erro ao criar grupo de apoio:", error);
       throw error;
     }
   },
 
-  atualizarDepoimentos: async (id, depoimentosData) => {
+  atualizarGruposApoio: async (id, grupoData) => {
     try {
       const token = sessionStorage.getItem("token");
-      const response = await api.put(`/depoimentos/${id}`, depoimentosData, {
+      const response = await api.put(`/grupos-apoio/${id}`, grupoData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       return response.data;
     } catch (error) {
-      console.error("Erro ao atualizar depoimento:", error);
+      console.error("Erro ao atualizar grupo de apoio:", error);
       throw error;
     }
   },
 
-  excluirDepoimentos: async (id) => {
+  excluirGruposApoio: async (id) => {
     try {
       const token = sessionStorage.getItem("token");
-      const response = await api.delete(`/depoimentos/${id}`, {
+      const response = await api.delete(`/grupos-apoio/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       return response.data;
     } catch (error) {
-      console.error("Erro ao excluir depoimento:", error);
+      console.error("Erro ao excluir grupo de apoio:", error);
       throw error;
     }
   }
 };
 
-export default depoimentosService;
+export default gruposApoioService;

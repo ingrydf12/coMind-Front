@@ -20,8 +20,8 @@ const Footer = () => {
                     </ul>
                 </div>
                 <div className="social-media">
-                    <a href="#intagram"><BsInstagram size={30} style={{ fill: 'white' }} /></a>
-                    <a href="#x"><SlSocialTwitter size={30} style={{ fill: 'white' }} /></a>
+                    <a href="https://www.instagram.com/co.mind.fsn3/"><BsInstagram size={30} style={{ fill: 'white' }} /></a>
+                    <a href="https://x.com/CoMindFSN3"><SlSocialTwitter size={30} style={{ fill: 'white' }} /></a>
                 </div>
             </div>
             <hr />

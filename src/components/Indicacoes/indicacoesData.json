@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "tipo": "ACOLHER ONLINE",          
+        "descricao": "Grupo de apoio virtual focado em lidar com ansiedade e estresse por meio de encontros semanais online.",       
+        "local": "Remoto"
+    },
+    {
+        "id": 2,
+        "tipo": "ABRAÇO COLETIVO",
+        "descricao": "Encontros presenciais para apoio psicológico e fortalecimento emocional, realizados em centros comunitários.",
+        "local": "Fortaleza"
+    },
+    {
+        "id": 3,
+        "tipo": "CONEXÃO VIRTUAL",          
+        "descricao": "Sessões online voltadas para jovens em busca de suporte emocional e autoconhecimento.",       
+        "local": "Remoto"
+    }
+]

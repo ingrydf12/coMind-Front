@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "nome": "João Pedro",
+        "local": "Fortaleza, CE", 
+        "texto": "Excelente plataforma!"
+    },
+    {
+        "id": 2,
+        "nome": "Ingryd",
+        "local": "Fortaleza, CE", 
+        "texto": "Gostei demais!"
+    },
+    {
+        "id": 3,
+        "nome": "Anônimo",
+        "local": "Rio de Janeiro, RJ", 
+        "texto": "Essa plataforma é simplesmente esplêndida! Os médicos são fenomenais."
+    }
+]

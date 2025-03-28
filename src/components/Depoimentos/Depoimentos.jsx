@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import './Depoimentos.css';
-import depoimentosService from '../../api/depoimentosService';
+/*import depoimentosService from '../../api/depoimentosService';*/
+import depoimentosData from './depoimentosData.json';
 
 const Depoimentos = () => {
   const [depoimentos, setDepoimentos] = useState([]);
 
+  /*
   useEffect(() => {
     const loadDepoimentos = async () => {
       try {
@@ -19,12 +21,17 @@ const Depoimentos = () => {
 
     loadDepoimentos();
   }, []);
+  */
+  
+  useEffect(() => {
+    setDepoimentos(depoimentosData);
+  }, []);
 
   return (
     <div className="depoimento">
       <h1>DEPOIMENTOS</h1>
       <div className="depoimento-container">
-        {depoimentos.lenght > 0 ? (
+        {depoimentos.length > 0 ? (
           depoimentos.map((depoimentos) => (
             <div className="depoimento-container">
               <div key={depoimentos.id} className="depoimento-card">

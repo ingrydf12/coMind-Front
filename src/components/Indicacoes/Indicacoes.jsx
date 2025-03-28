@@ -1,25 +1,48 @@
+import React, { useState, useEffect } from "react";
 import './Indicacoes.css';
+/*import gruposApoioService from '../../api/gruposApoioService';*/
+import indicacoesData from './indicacoesData.json';
 
 const Indicacoes = () => {
+    const [indicacoes, setIndicacoes] = useState([]);
+
+    /*
+    useEffect(() => {
+        const loadIndicacoes = async () => {
+        try {
+            const indicacoesData = await gruposApoioService.listarGruposApoio();
+            setIndicacoes(indicacoesData);
+        } catch (err) {
+            setError(err.message || "Erro ao carregar indicações");
+        } finally {
+            setLoading(false);
+        }
+        };
+
+        loadIndicacoes();
+    }, []);
+    */
+
+    useEffect(() => {
+        setIndicacoes(indicacoesData);
+    }, []);
+
     return (
         <div className="indicacoes">
             <h1>INDICAÇÕES</h1>
             <div className="indicacoes-text">
-                <div className="card1">
-                    <h2>ACOLHER ONLINE</h2>
-                    <h3>Presencial </h3>
-                    <p>Grupo de apoio virtual focado em lidar com ansiedade e estresse por meio de encontros semanais online. </p>
-                </div>
-                <div className="card2">
-                    <h2>ABRAÇO COLETIVO</h2>
-                    <h3>Presencial</h3>
-                    <p>Encontros presenciais para apoio psicológico e fortalecimento emocional, realizados em centros comunitários. </p>
-                </div>
-                <div className="card3">
-                    <h2>CONEXÃO VIRTUAL</h2>
-                    <h3>Remoto</h3>
-                    <p>Sessões online voltadas para jovens em busca de suporte emocional e autoconhecimento. </p>
-                </div>
+                {indicacoes.length > 0 ? (
+                    indicacoes.map((indicacoes) => (
+                        <div className="card1">
+                            <h2>{indicacoes.tipo}</h2>
+                            <h3>{indicacoes.local}</h3>
+                            <p>{indicacoes.descricao}</p>
+                        </div>
+                    ))
+                    ) : (
+                        <p>Nenhuma indicação encontrada...</p>
+                    )
+                }
             </div>
         </div>
     );
