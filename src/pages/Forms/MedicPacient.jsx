@@ -15,7 +15,7 @@ const MedicPacient = () => {
 
     const handleButtonClick = () => {
         if (selectedType === "PACIENTE") {
-            navigate('/form-paciente', { state: { ...state, tipo: selectedType } });
+            navigate('/form-pacient', { state: { ...state, tipo: selectedType } });
         }
         if (selectedType === "PROFISSIONAL") {
             navigate('/form-medic', { state: { ...state, tipo: selectedType } });
