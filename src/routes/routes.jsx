@@ -57,17 +57,13 @@ export const router = createBrowserRouter([
       {
         path: "/form-medic",
         element: (
-          <RedirectRoute>
             <FormMedic />
-          </RedirectRoute>
         ),
       },
       {
         path: "/form-pacient",
         element: (
-          <RedirectRoute>
             <FormPacient />
-          </RedirectRoute>
         ),
       },
       {

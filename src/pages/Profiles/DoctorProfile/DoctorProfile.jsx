@@ -14,10 +14,19 @@ const DoctorProfile = () => {
   useEffect(() => {
     const loadProfile = async () => {
       try {
-        const profileData = await profileService.getProfile();
+        const response = await profileService.getProfile();
+        console.log("Resposta completa da API:", response);
+        
+        const profileData = {
+          ...response.user,
+          ...response.profissional
+        };
+        
+        console.log("Dados combinados do perfil:", profileData);
         setProfile(profileData);
       } catch (err) {
         setError(err.message || "Erro ao carregar perfil");
+        console.error("Erro ao carregar perfil:", err);
       } finally {
         setLoading(false);
       }
