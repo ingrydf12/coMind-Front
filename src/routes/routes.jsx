@@ -11,9 +11,8 @@ import Depoimentos from "../components/Depoimentos/Depoimentos";
 import MedicPacient from "../pages/Forms/MedicPacient";
 import FormMedic from "../pages/Forms/FormMedic";
 import FormPacient from "../pages/Forms/FormPacient";
-import DoctorProfile from "../pages/Profiles/DoctorProfile/DoctorProfile";
-import PacientProfile from "../pages/Profiles/PacientProfile/PacientProfile";
 import Empty from "../pages/Empty/Empty";
+import ProfileRoute from "../routes/profileRouter";
 
 export const router = createBrowserRouter([
   {
@@ -70,17 +69,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: (
-          <RedirectRoute>
-            {
-              sessionStorage.getItem("userType") === "PROFISSIONAL" 
-              ? <DoctorProfile /> 
-              : <PacientProfile />
-            }
-          </RedirectRoute>
-        ),
-      }
-      ,
+        element: <ProfileRoute />,
+      },
       {
         path: "/dashboard",
         element: (
