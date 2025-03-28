@@ -14,6 +14,7 @@ import FormPacient from "../pages/Forms/FormPacient";
 import Empty from "../pages/Empty/Empty";
 import Agenda from "../pages/Agenda";
 import ProfileRoute from "../routes/profileRouter";
+import Agenda from "../pages/Agenda/Agenda";
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +79,14 @@ export const router = createBrowserRouter([
           <RedirectRoute>
             <Dashboard />
           </RedirectRoute>
+        ),
+      },
+      {
+        path: "/agenda",
+        element: (
+          
+            <Agenda />
+          
         ),
       },
       {
