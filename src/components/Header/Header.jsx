@@ -17,6 +17,10 @@ const Header = () => {
     navigate("/");
   };
 
+  const backToHomeProfile = () => {
+    navigate("/profile");
+  };
+
   return (
     <Navbar bg="dark" variant="light" expand="lg">
       <img
@@ -34,7 +38,7 @@ const Header = () => {
 
         {isAuthenticated ? (
           <>
-            <Navbar.Text className="autenticado-btn">Bem-vindo, {userName}</Navbar.Text>
+            <Navbar.Text className="autenticado-btn" onClick={backToHomeProfile} style={{ cursor: "pointer" }}>Bem-vindo, {userName}</Navbar.Text>
             <Button variant="outline-danger" onClick={handleLogout}>
               Sair
             </Button>
