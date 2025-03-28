@@ -1,43 +1,54 @@
 import React, { useEffect, useState } from "react";
+import './PacientProfile.css';
 import { useNavigate } from "react-router-dom";
-import pacienteService from "../../../api/pacienteService";
+import profileService from "../../../api/profileService";
 import DepoimentoProfile from "./Components/DepoimentoProfile";
 
 function PacientProfile() {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const loadProfile = async () => {
       try {
-        const response = await pacienteService.getUserProfile();
-        setUser(response.data);
-      } catch (error) {
-       /* navigate("/login");*/
+        const profileData = await profileService.getProfile();
+        console.log("Dados do perfil:", profileData);
+        setProfile(profileData);
+      } catch (err) {
+        setError(err.message || "Erro ao carregar perfil");
+      } finally {
+        setLoading(false);
       }
     };
-    fetchUser();
-  }, [navigate]);
+  
+    loadProfile();
+  }, []);
+  
+
+  if (loading) return <div className="loading-message">Carregando perfil...</div>;
+  if (error) return <div className="error-message">Erro: {error}</div>;
+  if (!profile) return <div>Nenhum dado de perfil encontrado</div>;
 
   return (
-    <div id="pacient-profile">
-      {user ? (
+    <div className="pacient-profile">
+      {profile ? (
         <div>
           <h2>Informações Pessoais</h2>
           <div>
-            <p>{user.nome}</p>
-            <p>{user.genero}</p>
-            <p>{user.idade} anos</p>
+            <p>{profile.nome}</p>
+            <p>{profile.genero}</p>
+            <p>{profile.idade} anos</p>
           </div>
           <div>
-            <p>{user.objetivoDaTerapia}</p>
+            <p>{profile.objetivoDaTerapia}</p>
           </div>
           <hr />
           <h2>Informações Médicas</h2>
           <div>
-            <p>{user.usoDeMedicamentos}</p>
-            <p>{user.principaisQueixas}</p>
-            <p>{user.historicoFamiliar}</p>
+            <p>{profile.usoDeMedicamentos}</p>
+            <p>{profile.principaisQueixas}</p>
+            <p>{profile.historicoFamiliar}</p>
           </div>
         </div>
       ) : (
