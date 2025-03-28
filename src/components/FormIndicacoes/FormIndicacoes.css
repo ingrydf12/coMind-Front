@@ -14,13 +14,14 @@
     margin-top: 5px;
     margin-left: 90px;
 }
-input{
+.form-indicacoes input{
     padding: 6px 60px;
     border-radius: 10px;
     background-color: white;
     border: 2px solid black;
     color: black;
 }
+
 .title-indicacoes{
     font-size: 1.5rem;
     display: block;
@@ -30,12 +31,13 @@ input{
 .email-container, .password-container{
     margin-right: 5vw;
 }
-select{
+.form-indicacoes select{
     width: 25vw;
     height: 5vh;
     border-radius: 5px;
     text-align: center;
 }
+
 .indicar-style{
     width: 100px;
     height: 35px;
