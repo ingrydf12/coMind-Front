@@ -1,3 +1,49 @@
-#pacient-profile {
+.pacient-profile {
     background-color: #FFF;
+    color: var(--primary-text);
+    padding: 4rem;
+}
+
+.profile-pacient-about {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.aside-profile-pacient {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.aside-profile-pacient img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+.divider-style {
+    width: 100%;
+    height: 1px;
+    background-color: var(--secondary-color);
+    margin: 1.5rem 0;
+}
+
+.personal-pacient-info {
+    flex: 1;
+    padding-left: 1rem;
+}
+
+.extra-info-pacient {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 2rem;
+    border-top: 2px solid var(--secondary-color);
+    margin-top: 1rem;
 }
