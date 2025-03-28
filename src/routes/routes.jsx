@@ -12,6 +12,7 @@ import MedicPacient from "../pages/Forms/MedicPacient";
 import FormMedic from "../pages/Forms/FormMedic";
 import FormPacient from "../pages/Forms/FormPacient";
 import Empty from "../pages/Empty/Empty";
+import Agenda from "../pages/Agenda/Agenda";
 import ProfileRoute from "../routes/profileRouter";
 
 export const router = createBrowserRouter([
@@ -34,40 +35,48 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <RedirectRoute>
             <Sobre />
-          </RedirectRoute>
         ),
       },
       {
         path: "/indications",
         element: (
-          <RedirectRoute>
             <Indicacoes />
-          </RedirectRoute>
         ),
       },
       {
         path: "/testimonials",
         element: (
-          <RedirectRoute>
             <Depoimentos />
-          </RedirectRoute>
         ),
       },
       {
         path: "/medic-pacient",
-        element: (
-            <MedicPacient />
-        ),
+        element: <MedicPacient />,
       },
       {
         path: "/form-medic",
-        element: <FormMedic />,
+        element: (
+          <RedirectRoute>
+            <FormMedic />
+          </RedirectRoute>
+        ),
+      },
+      {
+        path: "/form-pacient",
+        element: (
+          <RedirectRoute>
+            <FormPacient />
+          </RedirectRoute>
+        ),
       },
       {
         path: "/profile",
-        element: <ProfileRoute />,
+        element: (
+          <RedirectRoute>
+            <ProfileRoute />
+          </RedirectRoute>
+        ),
       },
       {
         path: "/dashboard",
@@ -78,10 +87,22 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "/agenda",
+        element: <Agenda />,
+      },
+      {
         path: "/empty",
         element: (
           <RedirectRoute>
             <Empty />
+          </RedirectRoute>
+        ),
+      },
+      {
+        path: "/agenda",
+        element: (
+          <RedirectRoute>
+            <Agenda />
           </RedirectRoute>
         ),
       },

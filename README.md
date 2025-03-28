@@ -2,7 +2,7 @@
 
 # coMind
 
-Este repositório contém a parte de front-end da aplicação coMind, utilizando ReactJS, Bootstrap e React-Router.
+Este repositório contém a parte de front-end da aplicação web coMind.
 
 ### Objetivo
 
@@ -12,6 +12,8 @@ O coMind é uma organização não governamental dedicada a oferecer apoio psico
 - ReactJS
 - Bootstrap
 - React-Router
+- Axios
+- TailwindCSS
 
 ## Como rodar o projeto?
 
@@ -27,27 +29,31 @@ O coMind é uma organização não governamental dedicada a oferecer apoio psico
 
 ```
 src -> diretório com a estrutura de pastas do projeto
+    api -> serviços de integração com backend / api
     assets -> imagens e componentes de imagens utilizados no projeto.
     components -> componentes reacts utilizados na aplicação.
-    contexts -> contextos de estruturas utilizadas por diversos componentes.
-    features -> novas implementações dentro do projeto, ex: interfaces.
+    contexts -> contextos de estruturas utilizadas por diversos componentes, ex: auth.
     services -> destinada a integrações com backend e validação de dados.
-    pages -> páginas da aplicação.
+    pages -> interfaces e páginas da aplicação.
+    routes -> rotas de navegação do aplicativo, incluindo as que necessitam de autenticação / redirect
     styles -> estilização de componentes e outros.
     utils -> utilidades dentro do projeto, exemplo: dados mockados.
 ```
 
 ## Equipe
 
-|<img src="https://avatars.githubusercontent.com/u/90623907?v=4" width="100">| <img src="https://avatars.githubusercontent.com/u/182433541?v=4" width="100"> |<img src="https://avatars.githubusercontent.com/u/186109669?v=4" width="100"> |
-|----| -----| -----|
-| Ingryd Duarte | João Pedro Alves | Kleber Lucas Silva |
+|<img src="https://avatars.githubusercontent.com/u/90623907?v=4" width="100">| <img src="https://avatars.githubusercontent.com/u/182433541?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/154270670?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/188931906?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/59874241?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/186109669?v=4" width="100">
+|----| -----| -----| ----- | ----- | ----- |
+| Ingryd Duarte | João Pedro Alves | Stephany Oliveira | Luanna Galliza | Marx Victor | Kleber Lucas Silva |
 
 <details>
 <summary><strong>Atribuições</strong></summary>
     
-- João Pedro: Formulários, footer, navegação, design
-- Ingryd: Header, navegação, design e páginas de autenticação
-- Kleber: Home e navegação.
+- João Pedro: Formulários, footer, navegação, design, integrações front-back, perfil de paciente, code review
+- Ingryd: Header, navegação, design, autenticação, integrações front-back, depoimentos, arquitetura, code review
+- Stephany Oliveira: perfil de médico e integração
+- Luanna Galliza: página de agenda, 
+- Marx Victor: página de agenda, navegação 
+- Kleber: Home (front)
 
 </details>
