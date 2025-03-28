@@ -35,25 +35,19 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <RedirectRoute>
             <Sobre />
-          </RedirectRoute>
         ),
       },
       {
         path: "/indications",
         element: (
-          <RedirectRoute>
             <Indicacoes />
-          </RedirectRoute>
         ),
       },
       {
         path: "/testimonials",
         element: (
-          <RedirectRoute>
             <Depoimentos />
-          </RedirectRoute>
         ),
       },
       {
