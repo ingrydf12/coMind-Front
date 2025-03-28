@@ -26,12 +26,13 @@ const Connect = () => {
       const token = response.token;
       
       const decodedToken = jwt.jwtDecode(token);
-      const userType = decodedToken.tipo || decodedToken.role;
+      const userType = decodedToken.tipo
       const userId = decodedToken.id || decodedToken.sub;
 
       sessionStorage.setItem("token", token);
-      sessionStorage.setItem("userType", userType);
+      sessionStorage.setItem("tipo", userType);
       sessionStorage.setItem("userId", userId);
+
 
       login(token);
 
