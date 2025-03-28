@@ -53,7 +53,7 @@ const DoctorProfile = () => {
           />
 
           <Button className="functions-btn">
-            <a href="/indications">Gerenciar atendimentos</a>
+            <a href="/atendimentos">Gerenciar atendimentos</a>
           </Button>
 
           <CardIndicacao />
