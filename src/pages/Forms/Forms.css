@@ -15,7 +15,6 @@
 }
 
 .personal,
-.formation-courses,
 .service,
 .free-service {
     display: flex;
@@ -71,6 +70,19 @@
 .textarea-form {
     width: 25rem;
     margin: 1rem;
+}
+
+.chip-box {
+    display: flex;
+    display: inline-block;
+}
+
+.chip {
+    padding: 0.3rem 1rem;
+    color: #FFF;
+    background-color: #232E9D;
+    border-radius: 0.625rem;
+    margin: 0.2rem;
 }
 
 .type-large:focus,
