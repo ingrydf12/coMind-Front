@@ -1,41 +1,78 @@
-import React from "react";
-import "./Forms.css"
+import React, { useState } from "react";
+import "./Forms.css";
 import Button from "../../components/Button/CustomButton";
+import authService from "../../api/authValidation";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const FormPacient = () => {
+    const navigate = useNavigate();
+    const { state } = useLocation();
+  
+    const [form, setForm] = useState({
+      nomeCompleto: '',
+      genero: '',
+      idade: 0,
+      principaisQueixas: '',
+      usoDeMedicamentos: 'NAO',
+      objetivoDaTerapia: '',
+      historicoFamiliar: ''
+    });
+  
+    const handleChange = (e) => {
+      const { name, value, type } = e.target;
+      const finalValue = type === 'number' ? parseInt(value) : value;
+      setForm({ ...form, [name]: finalValue });
+    };
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const { confirmarSenha, ...dados } = state;
+  
+      try {
+        await authService.register({
+          ...dados,
+          ...form,
+        });
+        alert("Cadastro realizado com sucesso!");
+        navigate('/login');
+      } catch (error) {
+        alert("Erro ao cadastrar: " + error.message);
+      }
+    };
+
     return(
-        <form className="form-style">
+        <form className="form-style" onSubmit={handleSubmit}>
             <h1>Preencha com suas informações</h1>
             {/* Informações Pessoais */}
             <div>
                 <div className="personal">
                     <div>
-                        <label className="main-title" for="name">Nome completo</label>
-                        <input className="type-large" type="text" id="name" name="name" placeholder="Nome" required />
+                        <label className="main-title" htmlFor="nomeCompleto">Nome completo</label>
+                        <input className="type-large" type="text" onChange={handleChange} id="nomeCompleto" name="nomeCompleto" value={form.nomeCompleto} placeholder="Nome completo" required />
                     </div>
                 </div>
 
                 <div className="personal">
                     <fieldset className="fieldset-form">
-                        <legend>Gênero</legend>
-                        <input type="radio" id="masculine" name="gender" required />
-                        <label for="masculine">Masculino</label>
+                        <legend>Selecione o gênero</legend>
+                        <input type="radio" id="masculine" onChange={handleChange} value="MASCULINO" name="genero" required />
+                        <label htmlFor="masculine">Masculino</label>
                         <br />
-                        <input type="radio" id="feminine" name="gender" required />
-                        <label for="feminine">Feminino</label>
+                        <input type="radio" value="FEMININO" id="feminine" name="genero" onChange={handleChange} required />
+                        <label htmlFor="feminine">Feminino</label>
                         <br />
-                        <input type="radio" id="not-inform" name="gender" required />
-                        <label for="not-inform">Prefiro não informar</label>
+                        <input type="radio" value="NAO_INFORMADO" id="not-inform" name="genero" onChange={handleChange} required />
+                        <label htmlFor="not-inform">Prefiro não informar</label>
                     </fieldset>
 
                     <div>
-                        <label className="sub-title" for="age">Idade:</label>
-                        <input className="type-short" type="number" id="age" name="age" required />
+                        <label className="sub-title" htmlFor="idade">Idade:</label>
+                        <input className="type-short" onChange={handleChange} value={form.idade} type="number" id="idade" name="idade" min="0" required />
                     </div>
 
                     <div>
-                        <label className="sub-title" for="objectives">Qual o seu objetivo com a terapia?</label>
-                        <textarea className="textarea-form" id="objectives" name="objectives" placeholder="Escreva sobre o seu objetivo" rows="5" cols="30" required />
+                        <label className="sub-title" htmlFor="objetivoDaTerapia">Qual o seu objetivo com a terapia?</label>
+                        <textarea className="textarea-form" onChange={handleChange} value={form.objetivoDaTerapia} id="objetivoDaTerapia" name="objetivoDaTerapia" placeholder="Escreva sobre o seu objetivo" rows="5" cols="30" required />
                     </div>
                 </div>
             </div>
@@ -49,46 +86,27 @@ const FormPacient = () => {
                 <label className="main-title">Atendimento</label>
                 <div className="service">
                     <div>
-                        <fildset className="fieldset-form">
+                        <fieldset className="fieldset-form">
                             <legend>Você faz uso de algum medicamento para a saúde mental?</legend>
-                            <input type="radio" id="yes" name="medicines" required />
-                            <label for="yes">Sim</label>
-                            <input type="radio" id="no" name="medicines" required />
-                            <label for="no">Não</label>
-                        </fildset>
+                            <input type="radio" id="yes" name="usoDeMedicamentos" value="SIM" onChange={handleChange} checked={form.usoDeMedicamentos === 'SIM'} required />
+                            <label htmlFor="yes">Sim</label>
+                            <input type="radio" id="no" name="usoDeMedicamentos" value="NAO" onChange={handleChange} checked={form.usoDeMedicamentos === 'NAO'} required />
+                            <label htmlFor="no">Não</label>
+                        </fieldset>
 
                         <div>
-                            <label className="sub-title" for="medicines-yes">Se sim, qual?</label>
-                            <textarea className="textarea-form" id="medicines-yes" name="medicines-yes" placeholder="Escreva um pouco sobre a sua medicação" rows="5" cols="30" />
+                            <label className="sub-title" htmlFor="principaisQueixas">Quais as suas principais queixas?</label>
+                            <textarea className="textarea-form" onChange={handleChange} value={form.principaisQueixas} id="principaisQueixas" name="principaisQueixas" placeholder="Escreva as suas queixas" rows="5" cols="30" required />
                         </div>
 
                         <div>
-                            <label className="sub-title" for="medicines-yes">Quais as suas principais queixas?</label>
-                            <textarea className="textarea-form" id="complaints" name="complaints" placeholder="Escreva as suas queixas" rows="5" cols="30" required />
-                        </div>
-
-                        <div>
-                            <label className="sub-title" for="medicines-yes">Há histórico de doenças da mente na sua família?</label>
-                            <textarea className="textarea-form" id="historical" name="historical" placeholder="Escreva um pouco sobre" rows="5" cols="30" required />
-                        </div>
-
-                        <div>
-                            <label className="sub-title" for="espec">Para qual ou quais especialidades você deseja atendimento?</label>
-                            <select className="type-large" id="espec" name="espec" required>
-                                <option value="" selected disabled hidden>Especialidade</option>
-                                <option value="anxiety">Ansiedade</option>
-                                <option value="depression">Depressão</option>
-                            </select>
-                            <div>
-                            {/* Caixinhas de especialidade vem aqui */}
-                            </div>
+                            <label className="sub-title" htmlFor="historicoFamiliar">Há histórico de doenças da mente na sua família?</label>
+                            <textarea className="textarea-form" onChange={handleChange} value={form.historicoFamiliar} id="historicoFamiliar" name="historicoFamiliar" placeholder="Escreva um pouco sobre" rows="5" cols="30" required />
                         </div>
                     </div>
                 </div>
-
             </div>
 
-        {/* MARK: - Precisa verificar o submit do formulario de registro */}
             <div className="button-side">
                 <Button type="submit" className="classBtn-prim" buttonText="Enviar" isOutlined={false}/>
             </div>
