@@ -1,11 +1,11 @@
 import React from "react";
-import "./Header.css";
+import "./Header.css"; // Mantenha o CSS antigo
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 const Header = () => {
-  const { isAuthenticated, userData, logout } = useAuth();
+  const { isAuthenticated, userName, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -15,24 +15,6 @@ const Header = () => {
 
   const backToHome = () => {
     navigate("/");
-  };
-
-  const goToDashboard = () => {
-    if (!userData) return;
-    
-    switch(userData.role) {
-      case 'ADMIN':
-        navigate('/dashboard');
-        break;
-      case 'PROFISSIONAL':
-        navigate('/empty');
-        break;
-      case 'PACIENTE':
-        navigate('/empty');
-        break;
-      default:
-        navigate('/');
-    }
   };
 
   return (
@@ -52,7 +34,7 @@ const Header = () => {
 
         {isAuthenticated ? (
           <>
-            <Navbar.Text className="autenticado-btn">Bem-vindo, {userData.nome}</Navbar.Text>
+            <Navbar.Text className="autenticado-btn">Bem-vindo, {userName}</Navbar.Text>
             <Button variant="outline-danger" onClick={handleLogout}>
               Sair
             </Button>

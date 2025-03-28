@@ -12,9 +12,13 @@ const register = async (userData) => {
 
 const login = async (credentials) => {
   try {
-    const response = await api.post('/auth/login', credentials);
+    const response = await api.post("/auth/login", credentials);
+    if (response.data.token) {
+      sessionStorage.setItem("token", response.data.token);
+    }
     return response.data;
   } catch (error) {
+    console.error("Erro na requisição de login:", error.response?.data || error.message);
     throw error;
   }
 };

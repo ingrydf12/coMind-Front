@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/Button/CustomButton";
 import authService from "../../api/authValidation";
 import { useAuth } from "../../contexts/AuthContext";
+import * as jwt from "jwt-decode";
 import "./Connect.css";
 
 const Connect = () => {
@@ -17,35 +18,40 @@ const Connect = () => {
     e.preventDefault();
     setError("");
     setLoading(true);
-  
+
+    const userData = { email, senha };
+
     try {
-      const response = await authService.login({ email, senha });
-      //console.log("Resposta do backend:", response);
-  
-      if (!response?.token) {
-        throw new Error(response?.message || "Token não recebido");
+      const response = await authService.login(userData);
+      const token = response.token;
+      
+      const decodedToken = jwt.jwtDecode(token);
+      const userType = decodedToken.tipo
+      const userId = decodedToken.id || decodedToken.sub;
+
+      sessionStorage.setItem("token", token);
+      sessionStorage.setItem("tipo", userType);
+      sessionStorage.setItem("userId", userId);
+
+
+      login(token);
+
+      switch(userType) {
+        case "ADMIN":
+          navigate("/dashboard");
+          break;
+        case "PROFISSIONAL":
+          navigate("/profile");
+          break;
+        case "PACIENTE":
+          navigate("/profile");
+          break;
+        default:
+          navigate("/");
       }
-  
-      login(response.token, {
-        role: response.tipoUsuario,
-        userData: response.usuario
-      });
-  
-      const redirectPath = {
-        'ADMIN': '/dashboard',
-        'PROFISSIONAL': '/empty',
-        'PACIENTE': '/empty'
-      }[response.tipoUsuario] || '/';
-  
-      navigate(redirectPath);
-  
     } catch (error) {
-      console.error("Erro no login:", error);
-      setError(
-        error.response?.data?.message || 
-        error.message || 
-        "Credenciais inválidas ou serviço indisponível"
-      );
+      console.error("Erro ao logar:", error);
+      setError(error.response?.data?.message || "Credenciais inválidas");
     } finally {
       setLoading(false);
     }

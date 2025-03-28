@@ -83,7 +83,7 @@ const FormPacient = () => {
 
             {/* Informações de Atendimento */}
             <div>
-                <label className="main-title">Atendimento</label>
+                <h2 className="main-title">Informações Médicas</h2>
                 <div className="service">
                     <div>
                         <fieldset className="fieldset-form">
