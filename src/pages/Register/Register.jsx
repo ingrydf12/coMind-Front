@@ -5,7 +5,7 @@ import './Register.css';
 
 const Register = () => {
     const navigate = useNavigate();
-    const [form, setForm] = useState({ name: '', email: '', senha: '' });
+    const [form, setForm] = useState({ nome: '', email: '', senha: '' });
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +27,7 @@ const Register = () => {
                 <h1 className="register-title">Crie sua conta</h1>
                 <form className="register-form" onSubmit={handleSubmit}>
                     <div className="form-group">
-                    <input className="form-input" name="name" placeholder="Seu nome de usuário" onChange={(e) => setForm({ ...form, name: e.target.value })} value={form.name} required />
+                    <input className="form-input" name="name" placeholder="Seu nome de usuário" onChange={(e) => setForm({ ...form, nome: e.target.value })} value={form.nome} required />
 
                     </div>
                     <div className="form-group">
