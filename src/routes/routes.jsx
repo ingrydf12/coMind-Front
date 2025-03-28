@@ -58,9 +58,7 @@ export const router = createBrowserRouter([
       {
         path: "/medic-pacient",
         element: (
-          <RedirectRoute>
             <MedicPacient />
-          </RedirectRoute>
         ),
       },
       {
