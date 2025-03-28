@@ -19,20 +19,25 @@
 }
 
 /* Da pra melhorar isso futuramente */
-.functions-btn{
+.functions-btn {
     display: flex;
     gap: 1rem;
     padding: 0.5rem 2rem;
+    color: var(--primary-text);
+    font-family: 'League Spartan';
+    font-size: 1rem;
+    align-items: center;
     background-color: #47d396;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .functions-btn a {
     color: var(--primary-text);
     font-family: 'League Spartan';
     font-size: 1rem;
-    text-decoration: none;
+    align-items: center;
 }
 
 .functions-btn a:hover {
