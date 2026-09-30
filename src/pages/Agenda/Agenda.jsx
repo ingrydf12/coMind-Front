@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
 import "./Agenda.css";
 
 const Agenda = () => {
@@ -13,7 +12,7 @@ const Agenda = () => {
 
   const buttonClick = () => {
     //TODO: Mudar essa navegação ou remover para virar uma requisição de criação de atendimento
-    navigate("/agenda-atendimento");
+    navigate("/profile");
   };
 
   return (
@@ -117,14 +116,14 @@ const Agenda = () => {
           </div>
         </div>
         <div id="agenda-btn-side">
-          <Button
+          <button
             id="btn-agenda"
             className={`classBtn-prim ${!selectedBox ? "btn-disabled" : ""}`}
             onClick={buttonClick}
             disabled={!selectedBox}
           >
             Prosseguir
-          </Button>
+          </button>
         </div>
       </main>
     </div>

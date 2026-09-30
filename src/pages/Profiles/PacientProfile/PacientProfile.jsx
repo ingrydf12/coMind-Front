@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./PacientProfile.css";
 import { useNavigate } from "react-router-dom";
 import profileService from "../../../api/profileService";
-import { Button } from "react-bootstrap";
 import DepoimentoProfileModal from "./Components/DepoimentoProfile";
 
 function PacientProfile() {
@@ -53,17 +52,17 @@ function PacientProfile() {
               alt="defaultProfile"
             />
 
-            <Button 
+            <button 
               className="functions-btn" 
               onClick={openDepoimentoModal}
               variant="primary"
             >
               Fazer depoimento
-            </Button>
+            </button>
 
-            <Button className="functions-btn" variant="primary">
-              <a href="/atendimentos" className="session-link">Ver minhas sessões</a>
-            </Button>
+            <button className="functions-btn" variant="primary">
+              <a href="/agenda" className="session-link">Ver minhas sessões</a>
+            </button>
           </div>
 
           <div className="personal-pacient-info">

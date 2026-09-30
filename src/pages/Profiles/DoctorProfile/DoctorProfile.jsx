@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./DoctorProfile.css";
 import defaultProfileImage from "../../../assets/image_profile.png";
-import Button from "react-bootstrap/Button";
 import ModalFormIndicacoes from "../../../components/FormIndicacoes/FormIndicacoes";
 import CardIndicacao from "../../../components/CardIndica/CardIndicacao";
 import profileService from "../../../api/profileService"

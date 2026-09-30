@@ -83,10 +83,6 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/agenda",
-        element: <Agenda />,
-      },
-      {
         path: "/empty",
         element: (
           <RedirectRoute>
@@ -97,9 +93,7 @@ export const router = createBrowserRouter([
       {
         path: "/agenda",
         element: (
-          <RedirectRoute>
             <Agenda />
-          </RedirectRoute>
         ),
       },
     ],

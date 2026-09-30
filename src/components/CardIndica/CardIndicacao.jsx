@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 
 //Criar um botão para indicação de grupo caso não tenha um grupo indicado
 const CardIndicacao = () => {
@@ -9,9 +8,9 @@ const CardIndicacao = () => {
             <h2>Abraço Coletivo</h2>
             <div className="more-info">
                 <p>Lorem ipsum dolor sit amet consectetur...</p>
-                <Button className="btn-style">
+                <button className="btn-style">
                     <a href="../indications">Saiba mais</a>
-                </Button>
+                </button>
             </div>
         </div>
     );

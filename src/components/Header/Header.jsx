@@ -1,7 +1,6 @@
 import React from "react";
-import "./Header.css"; // Mantenha o CSS antigo
-import { Nav, Navbar, Container, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import "./Header.css";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 const Header = () => {
@@ -22,39 +21,69 @@ const Header = () => {
   };
 
   return (
-    <Navbar bg="dark" variant="light" expand="lg">
-      <img
-        src="logoCoMind.svg"
-        alt="logo"
-        onClick={backToHome}
-        style={{ cursor: "pointer" }}
-      />
-      <Container>
-        <Nav className="mr-auto">
-          <Nav.Link>Sobre</Nav.Link>
-          <Nav.Link>Grupos</Nav.Link>
-          <Nav.Link>Depoimentos</Nav.Link>
-        </Nav>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container-fluid">
+        <img
+          src="logoCoMind.svg"
+          alt="logo"
+          onClick={backToHome}
+          style={{ cursor: "pointer" }}
+          className="navbar-brand me-3"
+        />
 
-        {isAuthenticated ? (
-          <>
-            <Navbar.Text className="autenticado-btn" onClick={backToHomeProfile} style={{ cursor: "pointer" }}>Bem-vindo, {userName}</Navbar.Text>
-            <Button variant="outline-danger" onClick={handleLogout}>
-              Sair
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button variant="primary" href="/login">
-              Entrar
-            </Button>
-            <Button variant="outline-primary" href="/register" style={{ marginLeft: "10px" }}>
-              Criar conta
-            </Button>
-          </>
-        )}
-      </Container>
-    </Navbar>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link to="/sobre" className="nav-link">Sobre</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/grupos" className="nav-link">Grupos</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/depoimentos" className="nav-link">Depoimentos</Link>
+            </li>
+          </ul>
+
+          <div className="d-flex align-items-center gap-2">
+            {isAuthenticated ? (
+              <>
+                <span
+                  className="navbar-text autenticado-btn me-2"
+                  onClick={backToHomeProfile}
+                  style={{ cursor: "pointer" }}
+                >
+                  Bem-vindo, {userName}
+                </span>
+                <button
+                  type="button"
+                  className="btn btn-outline-danger"
+                  onClick={handleLogout}
+                >
+                  Sair
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => navigate("/login")}
+                >
+                  Entrar
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-primary"
+                  onClick={() => navigate("/register")}
+                >
+                  Criar conta
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
 

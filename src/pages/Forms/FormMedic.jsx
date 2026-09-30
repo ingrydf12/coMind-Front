@@ -8,51 +8,8 @@ const FormMedic = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  if (!state?.nome || !state?.email || !state?.senha) {
-    navigate("/register");
-    return null;
-  }
+  const { confirmarSenha, ...dados } = state;
 
-  const ESPECIALIDADES = [
-    "COMPULSOES",
-    "BORDERLINE",
-    "AUTOCONHECIMENTO",
-    "ANSIEDADE",
-    "DEPRESSAO",
-    "FOBIAS",
-    "AUTOESTIMA",
-    "BULIMIA",
-    "CANCER",
-    "TRANSTORNOS",
-    "DISLEXIA",
-    "DISTURBIOS",
-    "DROGAS",
-    "ESQUIZOFRENIA",
-    "ESTRESSA",
-    "HIPERATIVIDADE",
-    "HIPOCONDRIA",
-    "OBESIDADE",
-    "BURNOUT",
-    "SEXUALIDADE",
-    "SUICIDIO",
-  ];
-
-  const FAIXAS_ETARIAS = [
-    "CRIANCAS",
-    "ADOLESCENTES",
-    "ADULTOS",
-    "IDOSOS",
-    "CASAIS",
-  ];
-  const DIAS_ATENDIMENTO = [
-    "SEGUNDA",
-    "TERCA",
-    "QUARTA",
-    "QUINTA",
-    "SEXTA",
-    "SABADO",
-    "DOMINGO",
-  ];
 
   const [form, setForm] = useState({
     nomeCompleto: "",
@@ -107,30 +64,28 @@ const FormMedic = () => {
       }
   
       const payload = {
-        nome: state.nome,
-        email: state.email,
-        senha: state.senha,
-        tipo: state.tipo,
-        profissional: {
-          matricula: form.matricula.trim(),
-          nomeCompleto: form.nomeCompleto,
-          genero: form.genero,
-          bio: form.bio,
-          formacoes: form.formacoes,
-          especialidade: form.especialidade,
-          faixaEtaria: form.faixaEtaria,
-          preco: Number(form.preco),
-          regiao: form.regiao,
-          foto: form.foto || "",
-          diasAtendimento: form.diasAtendimento,
-          quantAtendimentosGratuitos: Number(form.quantAtendimentosGratuitos)
+        nome: dados.nome,
+        email: dados.email,
+        senha: dados.senha,
+        tipo: "PROFISSIONAL",
+        matricula: form.matricula.trim(),
+        nomeCompleto: form.nomeCompleto,
+        genero: form.genero,
+        bio: form.bio,
+        formacoes: form.formacoes,
+        especialidade: form.especialidade,
+        faixaEtaria: form.faixaEtaria,
+        preco: Number(form.preco),
+        regiao: form.regiao,
+        foto: form.foto || "",
+        diasAtendimento: form.diasAtendimento,
+        quantAtendimentosGratuitos: Number(form.quantAtendimentosGratuitos)
         }
-      };
   
       const response = await authService.register(payload);
       
       if (response && response.success) {
-        navigate("/login", { state: { registrationSuccess: true } });
+        navigate("/login", { dados: { registrationSuccess: true } });
       } else {
         setError(response?.message || "Erro ao completar cadastro");
       }
@@ -141,6 +96,7 @@ const FormMedic = () => {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
     <form className="form-style" onSubmit={handleSubmit}>
